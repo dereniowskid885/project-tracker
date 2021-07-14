@@ -1,0 +1,31 @@
+@import '../../../variables';
+@import '../../../animations';
+
+.logo {
+    margin: 0 auto;
+    text-align: center;
+    font-size: calc(0.5rem + 1.5vw);
+    padding: 0.5em 1.5em;
+    width: 100vw;
+    background: $logo-gradient;
+    background-clip: text;
+    color: transparent;
+    background-size: 150%;
+    animation: gradient-animation 8s infinite alternate;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+
+    &__title {
+        letter-spacing: 0.1em;
+        font-style: italic;
+        width: 100%;
+    }
+
+    &__icon {
+        color: rgba(0, 0, 0, 0.6);
+        font-size: calc(3rem + 1.5vw);
+        padding: 0.5rem;
+    }
+}

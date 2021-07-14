@@ -1,0 +1,38 @@
+nav {
+    width: 100%;
+    max-height: 20vh;
+    margin: 0 auto;
+    flex: 1 1;
+    display: flex;
+    font-size: calc(0.8rem + 0.5vw);
+    font-weight: bold;
+    text-transform: uppercase;
+
+    & > ul {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+
+        & > li {
+            padding: 0.3rem;
+
+            & > a {
+                letter-spacing: 1px;
+                transition: letter-spacing 1s;
+
+                &:hover {
+                    letter-spacing: 3px;
+                }
+
+                &:before {
+                    display: flex;
+                    height: 0;
+                    overflow: hidden;
+                    visibility: hidden;
+                    content: attr(title);
+                    letter-spacing: 3px;
+                }
+            }
+        }
+    }
+}
