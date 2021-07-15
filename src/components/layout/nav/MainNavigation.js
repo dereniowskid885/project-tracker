@@ -1,4 +1,4 @@
-import classes from './MainNavigation.module.scss';
+import classes from '../../../styles/MainNavigation.module.scss';
 
 function MainNavigation() {
     return (

@@ -1,7 +1,7 @@
 import Logo from './logo/Logo';
 import MainNavigation from './nav/MainNavigation';
 import MainContent from './content/MainContent';
-import classes from './MainLayout.module.scss';
+import classes from '../../styles/MainLayout.module.scss';
 
 function MainLayout() {
     return (

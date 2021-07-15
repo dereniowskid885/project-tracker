@@ -1,11 +1,14 @@
-import classes from './MainContent.module.scss';
+import classes from '../../../styles/MainContent.module.scss';
+import TaskItem from '../../taskItem/TaskItem';
 
 function MainContent() {
     return (
         <main className={classes.content}>
-            <h1>XDDD</h1>
-            <h1>XDDD</h1>
-            <h1>XDDD</h1>
+            <TaskItem />
+            <TaskItem />
+            <TaskItem />
+            <TaskItem />
+            <TaskItem />
         </main>
     );
 }

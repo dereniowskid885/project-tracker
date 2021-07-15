@@ -1,0 +1,17 @@
+.task {
+    word-wrap: break-word;
+    max-width: 15vw;
+    padding: 0.5em;
+    margin: 0.5em 1.5em;
+    border: 2px solid black;
+    border-radius: 0.5em;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 1s;
+    background-color: #2980b9;
+    font-size: 1.3rem;
+
+    &:hover {
+        opacity: 1;
+    }
+}

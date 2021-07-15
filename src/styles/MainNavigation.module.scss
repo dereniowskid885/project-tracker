@@ -1,12 +1,18 @@
+@import './_variables.scss';
+
 nav {
     width: 100%;
     max-height: 20vh;
     margin: 0 auto;
     flex: 1 1;
     display: flex;
-    font-size: calc(0.8rem + 0.5vw);
+    font-size: calc(1.2rem + 0.5vw);
     font-weight: bold;
+    font-style: italic;
     text-transform: uppercase;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 
     & > ul {
         display: flex;
@@ -17,11 +23,15 @@ nav {
             padding: 0.3rem;
 
             & > a {
+                color: #240b36;
                 letter-spacing: 1px;
-                transition: letter-spacing 1s;
+                opacity: 0.7;
+                transition: text-shadow 1s, letter-spacing 1s, opacity 1s;
 
                 &:hover {
                     letter-spacing: 3px;
+                    text-shadow: 4px 3px 6px #aa4b6b;
+                    opacity: 1;
                 }
 
                 &:before {
