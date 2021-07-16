@@ -1,17 +1,22 @@
 .task {
     word-wrap: break-word;
-    max-width: 15vw;
+    width: calc(100vw / 5);
+    height: calc(100vh / 5);
     padding: 0.5em;
-    margin: 0.5em 1.5em;
+    margin: 0.5em 1em;
     border: 2px solid black;
     border-radius: 0.5em;
     cursor: pointer;
     opacity: 0.6;
     transition: opacity 1s;
     background-color: #2980b9;
-    font-size: 1.3rem;
+    font-size: calc(0.3rem + 1.2rem);
 
     &:hover {
         opacity: 1;
+    }
+
+    &__priority {
+        color: red;
     }
 }

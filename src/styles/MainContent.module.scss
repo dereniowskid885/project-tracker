@@ -3,7 +3,7 @@
     max-height: 100vh;
     margin: 0 auto;
     display: flex;
-    justify-content: space-evenly;
-    padding: 1.5em 3em;
+    justify-content: space-between;
+    padding: 1.5em calc(1em + 3vw);
     flex-wrap: wrap;
 }
