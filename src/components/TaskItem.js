@@ -28,11 +28,11 @@ function TaskItem(props) {
                     taskPriority={props.taskPriority}
                     taskName={props.taskName}
                     taskDescription={props.taskDescription}
-                    onClick={closeDetails}
+                    onCloseBtnClick={closeDetails}
                 />
             }
             { detailsAreOpen && 
-                <DetailsBackground onClick={closeDetails}/> 
+                <DetailsBackground onCloseBtnClick={closeDetails} /> 
             }
         </div>
     );

@@ -3,12 +3,10 @@
 .task {
     word-wrap: break-word;
     min-width: calc(100vw / 5);
-    min-height: calc(100vh / 5);
     padding: 0.5em;
     margin: 0.5em 1em;
     border: 2px solid black;
     border-radius: 0.5em;
-    cursor: pointer;
     opacity: 0.6;
     transition: opacity 1s;
     background-color: #2980b9;
@@ -16,10 +14,6 @@
 
     &:hover {
         opacity: 1;
-    }
-
-    &__priority {
-        color: red;
     }
 
     &__btn {

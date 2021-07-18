@@ -1,13 +1,14 @@
 import classes from '../../styles/MainNavigation.module.scss';
+import { Link } from 'react-router-dom';
 
 function MainNavigation() {
     return (
         <nav className={classes.nav}>
             <ul>
-                <li><a href="#" title="Home">Home</a></li>
-                <li><a href="#" title="Projects">Projects</a></li>
-                <li><a href="#" title="Tasks">Tasks</a></li>
-                <li><a href="#" title="About">About</a></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/projects">Projects</Link></li>
+                <li><Link to="/tasks">Tasks</Link></li>
+                <li><Link to="/about">About</Link></li>
             </ul>
         </nav>
     );

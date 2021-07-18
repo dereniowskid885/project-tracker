@@ -1,7 +1,7 @@
-import classes from '../../styles/MainContent.module.scss';
+import classes from '../../styles/Projects.module.scss';
 import TaskItem from '../TaskItem';
 
-function MainContent() {
+function Projects() {
     return (
         <main className={classes.content}>
             <TaskItem 
@@ -26,4 +26,4 @@ function MainContent() {
     );
 }
 
-export default MainContent;
+export default Projects;

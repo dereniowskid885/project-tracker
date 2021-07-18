@@ -7,6 +7,8 @@ nav {
     flex: 1 1;
     display: flex;
     font-size: calc(1.2rem + 0.5vw);
+    background: #2980b9;
+    box-shadow: 0 2px 40px rgba(0, 0, 0, 0.1);
     font-weight: bold;
     font-style: italic;
     text-transform: uppercase;
@@ -21,27 +23,15 @@ nav {
 
         & > li {
             padding: 0.3rem;
+            color: #240b36;
+            letter-spacing: 1px;
+            opacity: 0.7;
+            transition: text-shadow 1s, letter-spacing 1s, opacity 1s;
 
-            & > a {
-                color: #240b36;
-                letter-spacing: 1px;
-                opacity: 0.7;
-                transition: text-shadow 1s, letter-spacing 1s, opacity 1s;
-
-                &:hover {
-                    letter-spacing: 3px;
-                    text-shadow: 4px 3px 6px #aa4b6b;
-                    opacity: 1;
-                }
-
-                &:before {
-                    display: flex;
-                    height: 0;
-                    overflow: hidden;
-                    visibility: hidden;
-                    content: attr(title);
-                    letter-spacing: 3px;
-                }
+            &:hover {
+                letter-spacing: 3px;
+                text-shadow: 4px 3px 6px #aa4b6b;
+                opacity: 1;
             }
         }
     }

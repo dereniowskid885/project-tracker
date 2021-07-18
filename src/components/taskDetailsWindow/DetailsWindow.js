@@ -7,7 +7,7 @@ function DetailsWindow(props) {
             <h2>{props.taskName}</h2>
             <span>{props.taskPriority}</span>
             <p>{props.taskDescription}</p>
-            <button className={classes.window__btn} onClick={props.onClick}>Close</button>
+            <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Close</button>
         </div>
     );
 }
