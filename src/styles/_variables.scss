@@ -10,3 +10,16 @@ $logo-gradient: linear-gradient(
     90deg, 
     #c31432, #240b36, #aa4b6b, #6b6b83, #3b8d99, #c31432, #240b36
 );
+
+%btn-primary {
+    padding: 0.3rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    background: rgb(77, 71, 71);
+    color: white;
+    text-transform: uppercase;
+    font-size: calc(0.5rem + 0.8vw);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}

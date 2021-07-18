@@ -1,0 +1,20 @@
+@import './_variables.scss';
+
+.window {
+    position: fixed;
+    z-index: 2;
+    background: $background-gradient;
+    background-attachment: fixed;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    width: 80vw;
+    top: 10vh;
+    left: calc(50% - 40vw);
+    font-size: calc(1rem + 0.5vw);
+    padding: 1em;
+    border: 2px solid black;
+    border-radius: 0.5em;
+
+    &__btn {
+        @extend %btn-primary;
+    }
+}
