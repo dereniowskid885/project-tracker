@@ -1,0 +1,30 @@
+@import './variables';
+
+.login {
+    &__form {
+        font-size: calc(0.8rem + 0.5vw);
+        margin: calc(0.5em + 0.7vw);
+
+        h2 {
+            font-size: calc(0.8rem + 1vw);
+            text-transform: uppercase;
+            font-style: italic;
+        }
+
+        input {
+            background: #6b6b8360;
+            box-shadow: 0 2px 40px rgba(0, 0, 0, 0.1);
+            padding: 5px;
+            font-size: calc(0.8rem + 0.5vw);
+            border: none;
+            outline: none;
+        }
+    }
+
+    &__btn {
+        @extend %btn-primary;
+        left: 0;
+        transform: translateX(0);
+        margin: calc(0.3em + 0.3vw);
+    }
+}
