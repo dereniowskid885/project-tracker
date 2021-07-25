@@ -1,16 +1,18 @@
 import MainNavigation from './components/layout/MainNavigation';
 import Logo from './components/layout/Logo';
+import UserMenu from './components/layout/UserMenu';
 import Home from './components/pages/Home';
 import Projects from './components/pages/Projects';
 import Tasks from './components/pages/Tasks';
 import About from './components/pages/About';
-import classes from './styles/Projects.module.scss'
+import classes from './styles/App.module.scss'
 import { Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
     <div className={classes.container}>
       <Logo />
+      <UserMenu />
       <MainNavigation />
       <Switch>
         <Route path="/" exact>

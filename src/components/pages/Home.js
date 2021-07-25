@@ -15,10 +15,10 @@ function Home() {
     }
 
     return (
-        <div className={classes.home}>
+        <main className={classes.home}>
             <h1>Login, or register your account first.</h1>
             { regFormIsOpen ? <RegisterForm backBtnClick={showLogForm}/> : <LoginForm regBtnClick={showRegForm}/> }
-        </div>
+        </main>
     );
 }
 

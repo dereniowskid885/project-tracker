@@ -2,9 +2,9 @@ import classes from '../../styles/Projects.module.scss';
 
 function Projects() {
     return (
-        <div className={classes.project}>
+        <main className={classes.project}>
             
-        </div>
+        </main>
     );
 }
 

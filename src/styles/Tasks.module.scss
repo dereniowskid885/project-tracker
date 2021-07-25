@@ -1,8 +1,13 @@
 .content {
-    max-height: 100vh;
+    height: 100vh;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    padding: 1.5em calc(1em + 3vw);
+    padding: 3em calc(1em + 3vw);
     flex-wrap: wrap;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }

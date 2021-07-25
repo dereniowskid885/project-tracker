@@ -1,0 +1,27 @@
+@import './variables';
+
+.user {
+    position: absolute;
+    right: 3px;
+    top: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: calc(1px + 0.2vw);
+
+    &__icon {
+        color: rgba(0, 0, 0, 0.6);
+        font-size: calc(2.5rem + 3vw);
+    }
+
+    &__btn {
+        margin: 0.3rem auto;
+        @extend %btn-primary;
+        font-size: calc(0.5rem + 0.8vw);
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+}
