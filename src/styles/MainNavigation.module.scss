@@ -1,11 +1,8 @@
 @import './_variables.scss';
 
 nav {
-    width: 100%;
-    max-height: 20vh;
-    margin: 0 auto;
-    flex: 1 1;
-    display: flex;
+    height: 5vh;
+    width: 100vw;
     font-size: calc(1.2rem + 0.5vw);
     background: #6b6b83a4;
     box-shadow: 0 2px 40px rgba(0, 0, 0, 0.1);
@@ -19,7 +16,6 @@ nav {
     & > ul {
         display: flex;
         justify-content: space-around;
-        width: 100%;
 
         & > li {
             padding: 0.3rem;
@@ -34,5 +30,11 @@ nav {
                 opacity: 1;
             }
         }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    nav {
+        height: 4.5vh;
     }
 }

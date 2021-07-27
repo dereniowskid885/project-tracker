@@ -1,6 +1,7 @@
 @import './variables';
 
 .task {
+    height: 25vh;
     word-wrap: break-word;
     min-width: calc(100vw / 5);
     padding: 0.5em;
@@ -11,6 +12,7 @@
     transition: opacity 1s;
     background-color: #2980b9;
     font-size: calc(1rem + 0.5vw);
+    position: relative;
 
     &:hover {
         opacity: 1;
@@ -18,5 +20,15 @@
 
     &__btn {
         @extend %btn-primary;
+        position: absolute;
+        bottom: 5%;
+        font-size: calc(1rem + 0.1vw);
+        white-space: nowrap;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .task {
+        height: 20vh;
     }
 }

@@ -2,11 +2,11 @@
 @import './animations';
 
 .logo {
-    margin: 0 auto;
+    height: 22vh;
     text-align: center;
     font-size: calc(0.5rem + 1.5vw);
     padding: 0.5em 1.5em;
-    width: 95vw;
+    width: 100vw;
     background: $logo-gradient;
     background-clip: text;
     color: transparent;
@@ -20,12 +20,41 @@
     &__title {
         letter-spacing: 0.1em;
         font-style: italic;
-        width: 100%;
     }
 
     &__icon {
         color: rgba(0, 0, 0, 0.6);
         font-size: calc(3rem + 1.5vw);
         padding: 0.5rem;
+    }
+}
+
+@media only screen and (max-width: 1440px) {
+    .logo {
+        height: 20vh;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .logo {
+        height: 18vh;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .logo {
+        height: 16vh;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .logo {
+        height: 14vh;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .logo {
+        height: 12vh;
     }
 }
