@@ -1,9 +1,9 @@
 import classes from '../styles/Item.module.scss';
-import TaskDetailsWindow from './DetailsWindow/TaskDetailsWindow';
+import ProjectDetailsWindow from './DetailsWindow/ProjectDetailsWindow';
 import DetailsBackground from './DetailsWindow/DetailsBackground';
 import { useState } from 'react';
 
-function TaskItem(props) {
+function ProjectItem(props) {
     const [ detailsAreOpen, setDetailsState ] = useState(false);
 
     function showDetails() {
@@ -18,16 +18,14 @@ function TaskItem(props) {
         <div>
             <div className={classes.item}>
                 <h2>{props.projectName}</h2>
-                <h3>{props.taskPriority}</h3>
-                <p>{props.taskName}</p>
+                <h3>{props.projectMembers}</h3>
+                <h3>{props.projectTasks}</h3>
                 <button className={classes.item__btn} onClick={showDetails}>Show more</button>
             </div>
             { detailsAreOpen && 
-                <TaskDetailsWindow 
+                <ProjectDetailsWindow 
                     projectName={props.projectName}
-                    taskPriority={props.taskPriority}
-                    taskName={props.taskName}
-                    taskDescription={props.taskDescription}
+                    projectDescription={props.projectDescription}
                     onCloseBtnClick={closeDetails}
                 />
             }
@@ -38,4 +36,4 @@ function TaskItem(props) {
     );
 }
 
-export default TaskItem;
+export default ProjectItem;
