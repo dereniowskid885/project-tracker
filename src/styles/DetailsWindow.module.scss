@@ -16,5 +16,18 @@
 
     &__btn {
         @extend %btn-primary;
+
+        &Double {
+            left: 47%;
+        }
+    }
+
+    &__tasksDetails {
+        height: 80vh;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 }
