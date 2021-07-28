@@ -18,8 +18,10 @@ function ProjectItem(props) {
         <div>
             <div className={classes.item}>
                 <h2>{props.projectName}</h2>
-                <h3>{props.projectMembers}</h3>
-                <h3>{props.projectTasks}</h3>
+                <div>
+                    <h3>{props.projectMembers}</h3>
+                    <h3>{props.projectTasks}</h3>
+                </div>
                 <button className={classes.item__btn} onClick={showDetails}>Show more</button>
             </div>
             { detailsAreOpen && 

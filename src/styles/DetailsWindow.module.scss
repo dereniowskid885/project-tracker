@@ -30,4 +30,38 @@
             display: none;
         }
     }
+
+    & > ul li {
+        cursor: auto;
+    }
+
+    h1 {
+        font-size: calc(1rem + 3vw);
+    }
+}
+
+.tasks {
+    margin: 1rem 0;
+}
+
+.detailsContent {
+    padding: 0;
+}
+
+@media only screen and (max-width: 1100px) {
+    .window__btnDouble {
+        left: 43%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .window__btnDouble {
+        left: 40%;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .window__btnDouble {
+        left: 32%;
+    }
 }

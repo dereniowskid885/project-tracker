@@ -2,4 +2,8 @@
     margin: 0 auto;
     padding: 1.5em calc(1em + 3vw);
     text-align: center;
+
+    h1 {
+        font-size: calc(1rem + 0.8vw);
+    }
 }

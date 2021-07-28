@@ -1,9 +1,9 @@
 import classes from '../../styles/Tasks.module.scss';
 import TaskItem from '../TaskItem';
 
-function Tasks() {
+function Tasks(props) {
     return (
-        <main className={classes.content}>
+        <main className={classes.content + ' ' + props.detailsContent}>
             <TaskItem 
                 projectName="Project 1"
                 taskPriority="High"

@@ -22,8 +22,8 @@ function ProjectDetailsWindow(props) {
             </ul>
             <p>{props.projectDescription}</p>
             { tasksAreOpen &&
-                <div>
-                    <Tasks />
+                <div className={classes.tasks}>
+                    <Tasks detailsContent={classes.detailsContent}/>
                 </div>
             }
             { tasksAreOpen &&
