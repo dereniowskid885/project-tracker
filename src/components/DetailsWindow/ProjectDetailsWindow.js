@@ -22,17 +22,17 @@ function ProjectDetailsWindow(props) {
             </ul>
             <p>{props.projectDescription}</p>
             { tasksAreOpen &&
-                <div className={classes.tasks}>
-                    <Tasks detailsContent={classes.detailsContent}/>
-                </div>
-            }
-            { tasksAreOpen &&
                 <button className={classes.window__btn + ' ' + classes.window__btnDouble} onClick={hideTasks}>Hide Tasks</button>
             }
             { tasksAreOpen ||
                 <button className={classes.window__btn + ' ' + classes.window__btnDouble} onClick={showTasks}>Show Tasks</button>
             }
             <button className={classes.window__btn + ' ' + classes.window__btnDouble} onClick={props.onCloseBtnClick}>Close</button>
+            { tasksAreOpen &&
+                <div className={classes.tasks}>
+                    <Tasks detailsContent={classes.detailsContent}/>
+                </div>
+            }
         </div>
     );
 }
