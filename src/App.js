@@ -16,14 +16,18 @@ function App() {
     setUser({ username: obj.username, loggedIn: true });
   }
 
+  function logoutUser() {
+    setUser({ username: "", loggedIn: false });
+  }
+
   return (
     <div className={classes.container}>
       <Logo />
-      <UserMenu />
+      <UserMenu userDetails={user} logoutUser={logoutUser} />
       <MainNavigation />
       <Switch>
         <Route path="/" exact>
-          <Home userDetails={user} setUserDetails={userDetails}/>
+          <Home userDetails={user} setUserDetails={userDetails} />
         </Route>
         <Route path="/projects">
           <Projects />

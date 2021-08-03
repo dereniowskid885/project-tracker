@@ -24,4 +24,10 @@
             color: inherit;
         }
     }
+
+    &__info {
+        text-align: center;
+        font-size: calc(0.5rem + 0.8vw);
+        font-style: italic;
+    }
 }

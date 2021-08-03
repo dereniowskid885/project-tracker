@@ -1,0 +1,15 @@
+@import './variables';
+
+.panel {
+    &__btn {
+        @extend %btn-primary;
+        transform: translateX(0);
+        left: 0;
+        margin: calc(0.3em + 0.3vw);
+        width: 10vw;
+
+        &Show {
+            width: 15vw;
+        }
+    }
+}

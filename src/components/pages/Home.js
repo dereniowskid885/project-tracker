@@ -8,23 +8,20 @@ function Home(props) {
     const [ regFormIsOpen, setFormState ] = useState(false);
 
     const adminUser = {
-        username: "admin",
+        username: "adminowsky",
         password: "admin123"
     };
-    const [ error, setError] = useState("");
+    const [ loginError, setErrorState ] = useState(false);
 
-    const Login = userDetails => {
+    function loginUser(userDetails) {
         console.log(userDetails);
 
         if (userDetails.username === adminUser.username && userDetails.password === adminUser.password) {
+            setErrorState(false);
             props.setUserDetails(userDetails);
         } else {
-            console.log("Wrong username or password.");
+            setErrorState(true);
         }
-    }
-
-    const Logout = () => {
-        console.log("logged out");
     }
 
     function showRegForm() {
@@ -37,10 +34,17 @@ function Home(props) {
 
     return (
         <main className={classes.home}>
-            { props.userDetails.loggedIn ? <UserPanel userDetails={props.userDetails}/> : 
+            { props.userDetails.loggedIn ?
+                <UserPanel userDetails={props.userDetails}/>
+            : 
                 <div>
                     <h1>Login, or register your account first.</h1>
-                    { regFormIsOpen ? <RegisterForm backBtnClick={showLogForm}/> : <LoginForm regBtnClick={showRegForm} login={Login} error={error}/> }
+                    { regFormIsOpen ?
+                        <RegisterForm backBtnClick={showLogForm} />
+                    : 
+                        <LoginForm regBtnClick={showRegForm} loginUser={loginUser} />
+                    }
+                    { loginError && <h2>Username, or password is incorrect.</h2> }
                 </div>
             }
         </main>
