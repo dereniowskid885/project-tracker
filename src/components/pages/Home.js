@@ -8,8 +8,8 @@ function Home(props) {
     const [ regFormIsOpen, setFormState ] = useState(false);
 
     const adminUser = {
-        username: "adminowsky",
-        password: "admin123"
+        username: "admin",
+        password: "admin"
     };
     const [ loginError, setErrorState ] = useState(false);
 

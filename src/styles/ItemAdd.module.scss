@@ -1,0 +1,41 @@
+@import './variables';
+
+.itemAdd {
+    padding: 1.5em;
+    margin: 0 auto;
+    width: 27vw;
+    border-radius: 6px;
+    box-shadow: 0 2px 40px rgba(0, 0, 0, 0.3);
+
+    &__field {
+        margin-bottom: 0.5rem;
+
+        label {
+            float: left;
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: calc(0.8rem + 0.5vw);
+        }
+
+        input, textarea, select {
+            display: block;
+            font: inherit;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: calc(0.6rem + 0.5vw);
+            box-shadow: 0 2px 40px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    &__btn {
+        @extend %btn-primary;
+        transform: translateX(0);
+        left: 0;
+        margin: calc(0.3em + 0.3vw);
+    }
+}
