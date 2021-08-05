@@ -1,17 +1,32 @@
+import { useRef } from 'react';
 import classes from "../styles/ItemAdd.module.scss";
 
-function ProjectAdd() {
+function ProjectAdd(props) {
+    const projectNameRef = useRef();
+    const projectDescriptionRef = useRef();
+
+    function submitHandler(e) {
+        e.preventDefault();
+
+        const formData = {
+            projectName: projectNameRef.current.value,
+            projectDescription: projectDescriptionRef.current.value
+        };
+
+        props.sendData(formData, 'projects');
+    }
+
     return (
         <div className={classes.itemAdd}>
             <h1>Add new project</h1>
-            <form>
+            <form onSubmit={submitHandler}>
                 <div className={classes.itemAdd__field}>
                     <label htmlFor="projectName">Project name</label>
-                    <input type="text" id="projectName" required />
+                    <input type="text" id="projectName" required ref={projectNameRef} />
                 </div>
                 <div className={classes.itemAdd__field}>
                     <label htmlFor="projectDescription">Project description</label>
-                    <textarea id="projectDescription" required />
+                    <textarea id="projectDescription" required ref={projectDescriptionRef} />
                 </div>
                 <div className={classes.itemAdd__field}>
                     <label htmlFor="projectMembers">Project members</label>

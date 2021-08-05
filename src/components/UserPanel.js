@@ -17,6 +17,17 @@ function UserPanel(props) {
         setTaskAddState(true);
     }
 
+    function sendData(formData, table) {
+        fetch(
+            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/' + table + '.json',
+            {
+                method: 'POST',
+                body: JSON.stringify(formData),
+                headers: { 'Content-type': 'application/json' }
+            }
+        );
+    }
+
     return (
         <div className={classes.panel}>
             <h1>Welcome back {props.userDetails.username} !</h1>
@@ -24,8 +35,8 @@ function UserPanel(props) {
             <button className={classes.panel__btn} onClick={showProjectAdd}>Add Project</button><br />
             <button className={classes.panel__btn + ' ' + classes.panel__btnShow}>Show your tasks</button>
             <button className={classes.panel__btn} onClick={showTaskAdd}>Add Task</button><br /><br />
-            { projectAddIsOpen && <ProjectAdd /> }
-            { taskAddIsOpen && <TaskAdd /> }
+            { projectAddIsOpen && <ProjectAdd sendData={sendData} /> }
+            { taskAddIsOpen && <TaskAdd sendData={sendData} /> }
         </div>
     );
 }
