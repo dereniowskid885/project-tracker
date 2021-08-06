@@ -1,33 +1,51 @@
-import classes from '../../styles/Tasks.module.scss';
+import classes from '../../styles/Items.module.scss';
 import ProjectItem from '../ProjectItem';
+import { useState, useEffect } from 'react';
 
 function Projects() {
+    const [ isLoading, setIsLoading ] = useState(true);
+    const [ fetchedData, setFetchedData ] = useState([]);
+
+    useEffect(() => {
+        setIsLoading(true);
+  
+        fetch(
+          'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects.json'
+        ).then(response => {
+            return response.json();
+        }).then(data => {
+          const tempData = [];
+  
+          for (const key in data) {
+            const item = {
+              id: key,
+              ...data[key]
+            };
+  
+            tempData.push(item);
+          }
+  
+          setIsLoading(false);
+          setFetchedData(tempData);
+        });
+    }, []);
+
+    if (isLoading) {
+        return (
+            <div>
+                <h1>Loading...</h1>
+            </div>
+        );
+    }
+
     return (
         <main className={classes.content}>
-            <ProjectItem 
-                projectName="Projekcik fajnej strony"
-                projectMembers="Members - 3"
-                projectTasks="Tasks - 10"
-                projectDescription="Bardzo fajna strona polecam, może ją kiedys zrobimy."
-            />
-            <ProjectItem 
-                projectName="Music app"
-                projectMembers="Members - 2"
-                projectTasks="Tasks - 5"
-                projectDescription="Spotify wannabe app."
-            />
-            <ProjectItem 
-                projectName="Magda Gessler Website"
-                projectMembers="Members - 5"
-                projectTasks="Tasks - 33"
-                projectDescription="Strona dla pani Magdy Gessler, jurorki master szesza."
-            />
-            <ProjectItem 
-                projectName="Zdzislaw Website"
-                projectMembers="Members - 1"
-                projectTasks="Tasks - 2"
-                projectDescription="Strona dla pana zdzislawa mechanika."
-            />
+            { fetchedData.map((item) => (
+                <ProjectItem 
+                    projectName={item.projectName}
+                    projectDescription={item.projectDescription}
+                />
+            ))}
         </main>
     );
 }

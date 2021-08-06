@@ -1,6 +1,13 @@
 @import './variables';
 
 .panel {
+    height: 73vh;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
     &__btn {
         @extend %btn-primary;
         transform: translateX(0);
@@ -11,5 +18,15 @@
         &Show {
             width: 15vw;
         }
+    }
+
+    &__message {
+        background-color: #6b6b83a4;
+        font-style: italic;
+        letter-spacing: 1px;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        padding: 0.3rem 1rem;
     }
 }

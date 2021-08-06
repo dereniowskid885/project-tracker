@@ -26,7 +26,7 @@ function TaskAdd(props) {
                 </div>
                 <div className={classes.itemAdd__field}>
                     <label htmlFor="taskDescription">Task description</label>
-                    <input type="text" id="taskDescription" required ref={taskDescriptionRef} />
+                    <textarea id="taskDescription" required ref={taskDescriptionRef} rows="5" />
                 </div>
                 <button className={classes.itemAdd__btn} type="submit">Add</button>
                 <button className={classes.itemAdd__btn} type="reset">Clear</button>

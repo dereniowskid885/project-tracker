@@ -26,7 +26,7 @@ function ProjectAdd(props) {
                 </div>
                 <div className={classes.itemAdd__field}>
                     <label htmlFor="projectDescription">Project description</label>
-                    <textarea id="projectDescription" required ref={projectDescriptionRef} />
+                    <textarea id="projectDescription" required ref={projectDescriptionRef} rows="5"/>
                 </div>
                 <div className={classes.itemAdd__field}>
                     <label htmlFor="projectMembers">Project members</label>
