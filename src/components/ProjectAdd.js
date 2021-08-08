@@ -22,11 +22,11 @@ function ProjectAdd(props) {
             <form onSubmit={submitHandler}>
                 <div className={classes.itemAdd__field}>
                     <label htmlFor="projectName">Project name</label>
-                    <input type="text" id="projectName" required ref={projectNameRef} />
+                    <input type="text" id="projectName" ref={projectNameRef} required/>
                 </div>
                 <div className={classes.itemAdd__field}>
                     <label htmlFor="projectDescription">Project description</label>
-                    <textarea id="projectDescription" required ref={projectDescriptionRef} rows="5"/>
+                    <textarea id="projectDescription" ref={projectDescriptionRef} rows="5" required/>
                 </div>
                 <div className={classes.itemAdd__field}>
                     <label htmlFor="projectMembers">Project members</label>

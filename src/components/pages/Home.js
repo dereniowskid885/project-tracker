@@ -21,6 +21,7 @@ function Home(props) {
             props.setUserDetails(userDetails);
         } else {
             setErrorState(true);
+            setTimeout(() => { setErrorState(false); }, 3000);
         }
     }
 
