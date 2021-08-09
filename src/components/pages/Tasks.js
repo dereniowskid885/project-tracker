@@ -41,7 +41,8 @@ function Tasks() {
     return (
         <main className={classes.content}>
             { fetchedData.map((item) => (
-                <TaskItem 
+                <TaskItem
+                    projectId={item.id}
                     projectName={item.projectName}
                     taskPriority="High"
                     taskName={item.taskName}

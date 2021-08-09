@@ -22,7 +22,10 @@ function ProjectItem(props) {
                     <h3>{props.projectMembers}</h3>
                     <h3>{props.projectTasks}</h3>
                 </div>
-                <button className={classes.item__btn} onClick={showDetails}>Show more</button>
+                <div className={classes.item__buttons}>
+                    <button className={classes.item__btn} onClick={showDetails}>Show more</button>
+                    <button className={classes.item__btn} onClick={showDetails}>Delete</button>
+                </div>
             </div>
             { detailsAreOpen && 
                 <ProjectDetailsWindow 

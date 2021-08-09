@@ -14,13 +14,32 @@ function TaskItem(props) {
         setDetailsState(false);
     }
 
+    function handleDelete(id) {
+        deleteTask(id);
+    }
+
+    function deleteTask(id) {
+        fetch(
+            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks/' + id + '.json',
+            {
+                method: 'DELETE',
+                headers: { 'Content-type': 'application/json' }
+            }
+        ).then(() => {
+            console.log("udalo sie");
+        });
+    }
+
     return (
         <div>
             <div className={classes.item}>
                 <h2>{props.projectName}</h2>
                 <h3>{props.taskPriority}</h3>
                 <p>{props.taskName}</p>
-                <button className={classes.item__btn} onClick={showDetails}>Show more</button>
+                <div className={classes.item__buttons}>
+                    <button className={classes.item__btn} onClick={showDetails}>Show more</button>
+                    <button className={classes.item__btn}>Delete</button>
+                </div>
             </div>
             { detailsAreOpen && 
                 <TaskDetailsWindow 

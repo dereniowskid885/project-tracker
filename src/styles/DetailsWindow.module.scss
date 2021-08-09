@@ -13,13 +13,22 @@
     padding: 1em;
     border: 2px solid black;
     border-radius: 0.5em;
+    padding-bottom: 4.5rem;
 
     &__btn {
         @extend %btn-primary;
+        white-space: nowrap;
+        position: static;
+        transform: translateX(0);
+    }
 
-        &Double {
-            left: 47%;
-        }
+    &__buttons {
+        position: absolute;
+        bottom: 7%;
+        left: 3%;
+        width: 93%;
+        display: flex;
+        justify-content: space-around;
     }
 
     &__tasksDetails {
