@@ -21,19 +21,20 @@ function ProjectDetailsWindow(props) {
                 <li>XDXDXD</li>
             </ul>
             <p>{props.projectDescription}</p>
-            <div className={classes.window__buttons}>
-                { tasksAreOpen &&
-                    <button className={classes.window__btn + ' ' + classes.window__btnDouble} onClick={hideTasks}>Hide Tasks</button>
-                }
-                { tasksAreOpen ||
-                    <button className={classes.window__btn + ' ' + classes.window__btnDouble} onClick={showTasks}>Show Tasks</button>
-                }
-                <button className={classes.window__btn + ' ' + classes.window__btnDouble} onClick={props.onCloseBtnClick}>Close</button>
-                <button className={classes.window__btn}>Delete</button>
-            </div>
-            { tasksAreOpen &&
+            { tasksAreOpen ?
                 <div className={classes.tasks}>
                     <Tasks detailsContent={classes.detailsContent}/>
+                    <div className={classes.window__buttons + ' ' + classes.window__buttonsDetails}>
+                        <button className={classes.window__btn} onClick={hideTasks}>Hide Tasks</button>
+                        <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Close</button>
+                        <button className={classes.window__btn}>Delete</button>
+                    </div>
+                </div>
+                :
+                <div className={classes.window__buttons}>
+                    <button className={classes.window__btn} onClick={showTasks}>Show Tasks</button>
+                    <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Close</button>
+                    <button className={classes.window__btn}>Delete</button>
                 </div>
             }
         </div>

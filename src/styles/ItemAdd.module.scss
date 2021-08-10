@@ -40,3 +40,27 @@
         margin: calc(0.3em + 0.3vw);
     }
 }
+
+@media only screen and (max-width: 1300px) {
+    .itemAdd {
+        width: 40vw;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .itemAdd {
+        width: 45vw;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .itemAdd {
+        width: 55vw;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .itemAdd {
+        width: 65vw;
+    }
+}

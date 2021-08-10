@@ -39,10 +39,12 @@ function UserPanel(props) {
     return (
         <div className={classes.panel}>
             <h1>Welcome back {props.userDetails.username} !</h1>
-            <button className={classes.panel__btn + ' ' + classes.panel__btnShow}>Show your projects</button>
-            <button className={classes.panel__btn} onClick={showProjectAdd}>Add Project</button>
-            <button className={classes.panel__btn + ' ' + classes.panel__btnShow}>Show your tasks</button>
-            <button className={classes.panel__btn} onClick={showTaskAdd}>Add Task</button>
+            <div className={classes.panel__buttons}>
+                <button className={classes.panel__btn}>Show your projects</button>
+                <button className={classes.panel__btn} onClick={showProjectAdd}>Add Project</button>
+                <button className={classes.panel__btn}>Show your tasks</button>
+                <button className={classes.panel__btn} onClick={showTaskAdd}>Add Task</button>
+            </div>
             { projectAddIsOpen && <ProjectAdd sendData={sendData} /> }
             { taskAddIsOpen && <TaskAdd sendData={sendData} /> }
             { itemIsAdded && <h1 className={classes.panel__message}>Success !</h1> }

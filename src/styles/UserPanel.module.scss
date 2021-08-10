@@ -1,11 +1,20 @@
 @import './variables';
 
 .panel {
-    height: 73vh;
+    height: 75vh;
     overflow: auto;
 
     &::-webkit-scrollbar {
         display: none;
+    }
+
+    &__buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        justify-items: center;
+        width: fit-content;
+        margin: 0 auto;
     }
 
     &__btn {
@@ -13,11 +22,8 @@
         transform: translateX(0);
         left: 0;
         margin: calc(0.3em + 0.3vw);
-        width: 10vw;
-
-        &Show {
-            width: 15vw;
-        }
+        font-size: calc(1.2rem + 0.1vw);
+        width: 20vw;
     }
 
     &__message {
@@ -28,5 +34,55 @@
         bottom: 0;
         right: 0;
         padding: 0.3rem 1rem;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .panel__buttons {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .panel__btn {
+        width: 30vw;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .panel__btn {
+        width: 40vw;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .panel__buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .panel__btn {
+        width: 60vw;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .panel {
+        height: 77vh;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .panel {
+        height: 79vh;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .panel {
+        height: 81vh;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .panel {
+        height: 83vh;
     }
 }

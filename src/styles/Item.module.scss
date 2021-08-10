@@ -1,7 +1,6 @@
 @import './variables';
 
 .item {
-    height: 25vh;
     word-wrap: break-word;
     min-width: calc(100vw / 5);
     padding: 0.5em;
@@ -20,23 +19,26 @@
 
     &__btn {
         @extend %btn-primary;
-        font-size: calc(1rem + 0.1vw);
+        font-size: calc(0.8rem + 0.1vw);
         white-space: nowrap;
         position: static;
         transform: translateX(0);
     }
 
     &__buttons {
-        position: absolute;
-        bottom: 7%;
-        width: 90%;
         display: flex;
         justify-content: space-around;
     }
-}
 
-@media only screen and (max-width: 500px) {
-    .item {
-        height: 20vh;
+    &__priorityHigh {
+        color: rgb(189, 14, 14);
+    }
+
+    &__priorityMed {
+        color: rgb(202, 202, 16);
+    }
+
+    &__priorityLow {
+        color: rgb(14, 192, 14);
     }
 }

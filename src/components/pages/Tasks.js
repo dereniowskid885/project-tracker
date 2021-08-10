@@ -2,7 +2,7 @@ import classes from '../../styles/Items.module.scss';
 import TaskItem from '../TaskItem';
 import { useState, useEffect } from 'react';
 
-function Tasks() {
+function Tasks(props) {
     const [ isLoading, setIsLoading ] = useState(true);
     const [ fetchedData, setFetchedData ] = useState([]);
 
@@ -44,8 +44,9 @@ function Tasks() {
                 <TaskItem
                     projectId={item.id}
                     projectName={item.projectName}
-                    taskPriority="High"
+                    taskPriority={item.taskPriority}
                     taskName={item.taskName}
+                    assignedUser={item.assignedUser}
                     taskDescription={item.taskDescription}
                 />
             ))}

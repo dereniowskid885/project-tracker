@@ -20,15 +20,21 @@
         white-space: nowrap;
         position: static;
         transform: translateX(0);
+        font-size: calc(0.9rem + 0.1vw);
     }
 
     &__buttons {
         position: absolute;
-        bottom: 7%;
+        bottom: 1%;
         left: 3%;
         width: 93%;
         display: flex;
         justify-content: space-around;
+
+        &Details {
+            position: static;
+            width: 100%;
+        }
     }
 
     &__tasksDetails {
@@ -47,30 +53,25 @@
     h1 {
         font-size: calc(1rem + 3vw);
     }
+
+    &__priorityHigh {
+        color: rgb(189, 14, 14);
+    }
+
+    &__priorityMed {
+        color: rgb(202, 202, 16);
+    }
+
+    &__priorityLow {
+        color: rgb(14, 192, 14);
+    }
 }
 
 .tasks {
     margin: 1rem 0;
+    height: 0;
 }
 
 .detailsContent {
     padding: 0;
-}
-
-@media only screen and (max-width: 1100px) {
-    .window__btnDouble {
-        left: 43%;
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    .window__btnDouble {
-        left: 40%;
-    }
-}
-
-@media only screen and (max-width: 350px) {
-    .window__btnDouble {
-        left: 32%;
-    }
 }
