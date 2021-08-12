@@ -18,10 +18,11 @@ function ProjectItem(props) {
         <div>
             <div className={classes.item}>
                 <h2>{props.projectName}</h2>
-                <div>
-                    <h3>{props.projectMembers}</h3>
-                    <h3>{props.projectTasks}</h3>
-                </div>
+                <ul className={classes.item__members}>
+                    { props.projectMembers && props.projectMembers.map((member) => (
+                        <li key={member}>{member}</li>
+                    ))}
+                </ul>
                 <div className={classes.item__buttons}>
                     <button className={classes.item__btn} onClick={showDetails}>Show more</button>
                     <button className={classes.item__btn} onClick={showDetails}>Delete</button>
@@ -31,6 +32,7 @@ function ProjectItem(props) {
                 <ProjectDetailsWindow 
                     projectName={props.projectName}
                     projectDescription={props.projectDescription}
+                    projectMembers={props.projectMembers}
                     onCloseBtnClick={closeDetails}
                 />
             }

@@ -42,6 +42,7 @@ function Tasks(props) {
         <main className={classes.content}>
             { fetchedData.map((item) => (
                 <TaskItem
+                    key={item.id}
                     projectId={item.id}
                     projectName={item.projectName}
                     taskPriority={item.taskPriority}

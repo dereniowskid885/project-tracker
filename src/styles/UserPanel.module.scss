@@ -1,7 +1,7 @@
 @import './variables';
 
 .panel {
-    height: 75vh;
+    height: 93vh;
     overflow: auto;
 
     &::-webkit-scrollbar {
@@ -60,29 +60,5 @@
 
     .panel__btn {
         width: 60vw;
-    }
-}
-
-@media only screen and (max-width: 1200px) {
-    .panel {
-        height: 77vh;
-    }
-}
-
-@media only screen and (max-width: 1000px) {
-    .panel {
-        height: 79vh;
-    }
-}
-
-@media only screen and (max-width: 800px) {
-    .panel {
-        height: 81vh;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-    .panel {
-        height: 83vh;
     }
 }

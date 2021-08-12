@@ -41,9 +41,11 @@ function Projects() {
     return (
         <main className={classes.content}>
             { fetchedData.map((item) => (
-                <ProjectItem 
+                <ProjectItem
+                    key={item.id}
                     projectName={item.projectName}
                     projectDescription={item.projectDescription}
+                    projectMembers={item.projectMembers}
                 />
             ))}
         </main>

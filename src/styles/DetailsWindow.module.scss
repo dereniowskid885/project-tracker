@@ -37,6 +37,10 @@
         }
     }
 
+    &__members {
+        font-style: italic;
+    }
+
     &__tasksDetails {
         height: 80vh;
         overflow-y: auto;

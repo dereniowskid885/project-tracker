@@ -18,6 +18,10 @@
             font-size: calc(0.8rem + 0.5vw);
         }
 
+        legend {
+            font-size: calc(0.8rem + 0.5vw);
+        }
+
         input, textarea, select {
             display: block;
             font: inherit;
@@ -31,6 +35,11 @@
             box-shadow: 0 2px 40px rgba(0, 0, 0, 0.1);
             resize: none;
         }
+
+        fieldset {
+            border: none;
+            text-align: left;
+        }
     }
 
     &__btn {
@@ -38,6 +47,19 @@
         transform: translateX(0);
         left: 0;
         margin: calc(0.3em + 0.3vw);
+    }
+
+    &__checkbox {
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr 1fr 6fr 6fr;
+        align-items: center;
+
+        label {
+            margin-bottom: 0;
+            margin-top: 4px;
+            font-style: italic;
+        }
     }
 }
 
@@ -56,6 +78,13 @@
 @media only screen and (max-width: 650px) {
     .itemAdd {
         width: 55vw;
+
+        &__checkbox {
+            label {
+                margin-left: 0.5rem;
+                margin-top: 2px;
+            }
+        }
     }
 }
 

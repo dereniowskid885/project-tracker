@@ -25,6 +25,10 @@
         transform: translateX(0);
     }
 
+    &__members {
+        font-style: italic;
+    }
+
     &__buttons {
         display: flex;
         justify-content: space-around;

@@ -85,7 +85,7 @@ function TaskAdd(props) {
                     <label htmlFor="selectedProject">Select project</label>
                     <select id="selectedProject" required ref={selectedProjectRef}>
                         { projectList.map((item) => (
-                            <option value={item.projectName}>{item.projectName}</option>
+                            <option key={item.id} value={item.projectName}>{item.projectName}</option>
                         ))}
                     </select>
                 </div>
@@ -93,7 +93,7 @@ function TaskAdd(props) {
                     <label htmlFor="assignedUser">Assign user</label>
                     <select id="assignedUser" required ref={assignedUserRef}>
                         { userList.map((item) => (
-                            <option value={item.username}>{item.username}</option>
+                            <option key={item.id} value={item.username}>{item.username}</option>
                         ))}
                     </select>
                 </div>

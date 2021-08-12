@@ -16,9 +16,10 @@ function ProjectDetailsWindow(props) {
     return (
         <div className={classes.window + ' ' + [tasksAreOpen && classes.window__tasksDetails]}>
             <h1>{props.projectName}</h1>
-            <ul>
-                <li>XD</li>
-                <li>XDXDXD</li>
+            <ul className={classes.window__members}>
+                { props.projectMembers && props.projectMembers.map((member) => (
+                    <li key={member}>{member}</li>
+                ))}
             </ul>
             <p>{props.projectDescription}</p>
             { tasksAreOpen ?
