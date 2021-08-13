@@ -73,6 +73,7 @@ function ProjectAdd(props) {
                                     checked={item.checked}
                                     onChange={event => {
                                         const checked = event.target.checked;
+                                        
                                         setUserList(
                                             userList.map((i) => {
                                                 if (item.id === i.id) {
@@ -90,6 +91,7 @@ function ProjectAdd(props) {
                 </div>
                 <button className={classes.itemAdd__btn} type="submit">Add</button>
                 <button className={classes.itemAdd__btn} type="reset">Clear</button>
+                <button className={classes.itemAdd__btn} onClick={props.onCloseBtnClick}>Back</button>
             </form>
         </div>
     );

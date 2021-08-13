@@ -11,7 +11,7 @@ function RegisterForm(props) {
 
     function registerAlert() {
         setRegisterState(true);
-        setTimeout(() => { setRegisterState(false); }, 3000);
+        setTimeout(() => { setRegisterState(false); window.location.reload(false); }, 3000);
     }
 
     function submitHandler(e) {
@@ -45,9 +45,9 @@ function RegisterForm(props) {
     return (
         <div className={classes.login}>
             <form className={classes.login__form} onSubmit={submitHandler}>
-                <h2>Username</h2><input type="text" name="username" ref={usernameRef} required/>
-                <h2>Password</h2><input type="password" name="password" ref={passwordRef} required/>
-                <h2>Confirm password</h2><input type="password" name="confirm_password" ref={passwordConfirmRef} required/><br />
+                <h2>Username</h2><input type="text" name="username" ref={usernameRef} required />
+                <h2>Password</h2><input type="password" name="password" ref={passwordRef} required />
+                <h2>Confirm password</h2><input type="password" name="confirm_password" ref={passwordConfirmRef} required /><br />
                 <button className={classes.login__btn} onClick={props.backBtnClick}>Back</button>
                 <button className={classes.login__btn}>Submit</button>
             </form>

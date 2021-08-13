@@ -24,7 +24,7 @@ function ProjectDetailsWindow(props) {
             <p>{props.projectDescription}</p>
             { tasksAreOpen ?
                 <div className={classes.tasks}>
-                    <Tasks detailsContent={classes.detailsContent}/>
+                    <Tasks detailsContent={classes.detailsContent} />
                     <div className={classes.window__buttons + ' ' + classes.window__buttonsDetails}>
                         <button className={classes.window__btn} onClick={hideTasks}>Hide Tasks</button>
                         <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Close</button>

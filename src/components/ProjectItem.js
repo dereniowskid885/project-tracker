@@ -18,11 +18,11 @@ function ProjectItem(props) {
         <div>
             <div className={classes.item}>
                 <h2>{props.projectName}</h2>
-                <ul className={classes.item__members}>
+                <ol className={classes.item__members}>
                     { props.projectMembers && props.projectMembers.map((member) => (
                         <li key={member}>{member}</li>
                     ))}
-                </ul>
+                </ol>
                 <div className={classes.item__buttons}>
                     <button className={classes.item__btn} onClick={showDetails}>Show more</button>
                     <button className={classes.item__btn} onClick={showDetails}>Delete</button>

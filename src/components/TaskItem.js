@@ -33,12 +33,11 @@ function TaskItem(props) {
     return (
         <div>
             <div className={classes.item}>
-                <h2>{props.projectName}</h2>
+                <h2>{props.taskName}</h2>
                 <h2 className={(props.taskPriority === "High" && classes.item__priorityHigh) + ' ' +
                                (props.taskPriority === "Medium" && classes.item__priorityMed) + ' ' +
                                (props.taskPriority === "Low" && classes.item__priorityLow)}>{props.taskPriority}</h2>
-                <h3><i>{props.assignedUser}</i></h3>
-                <p>{props.taskName}</p>
+                <h3>{props.assignedUser}</h3>
                 <div className={classes.item__buttons}>
                     <button className={classes.item__btn} onClick={showDetails}>Show more</button>
                     <button className={classes.item__btn}>Delete</button>

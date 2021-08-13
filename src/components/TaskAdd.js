@@ -41,6 +41,7 @@ function TaskAdd(props) {
   
             tempData.push(item);
           }
+
           setUserList(tempData);
         });
     }, []);
@@ -61,6 +62,7 @@ function TaskAdd(props) {
   
             tempData.push(item);
           }
+          
           setProjectList(tempData);
         });
     }, []);
@@ -103,6 +105,7 @@ function TaskAdd(props) {
                 </div>
                 <button className={classes.itemAdd__btn} type="submit">Add</button>
                 <button className={classes.itemAdd__btn} type="reset">Clear</button>
+                <button className={classes.itemAdd__btn} onClick={props.onCloseBtnClick}>Back</button>
             </form>
         </div>
     );

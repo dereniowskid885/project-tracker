@@ -2,7 +2,7 @@ import classes from '../../styles/Items.module.scss';
 import TaskItem from '../TaskItem';
 import { useState, useEffect } from 'react';
 
-function Tasks(props) {
+function Tasks() {
     const [ isLoading, setIsLoading ] = useState(true);
     const [ fetchedData, setFetchedData ] = useState([]);
 

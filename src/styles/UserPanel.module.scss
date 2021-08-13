@@ -10,8 +10,8 @@
 
     &__buttons {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
         justify-items: center;
         width: fit-content;
         margin: 0 auto;
@@ -38,10 +38,6 @@
 }
 
 @media only screen and (max-width: 1000px) {
-    .panel__buttons {
-        grid-template-columns: 1fr 1fr;
-    }
-
     .panel__btn {
         width: 30vw;
     }

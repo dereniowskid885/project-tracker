@@ -25,10 +25,6 @@
         transform: translateX(0);
     }
 
-    &__members {
-        font-style: italic;
-    }
-
     &__buttons {
         display: flex;
         justify-content: space-around;
@@ -44,5 +40,10 @@
 
     &__priorityLow {
         color: rgb(14, 192, 14);
+    }
+
+    ol {
+        padding-left: 1.5rem;
+        list-style-type: initial;
     }
 }
