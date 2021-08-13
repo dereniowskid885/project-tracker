@@ -14,19 +14,34 @@ function TaskItem(props) {
         setDetailsState(false);
     }
 
-    function handleDelete(id) {
-        deleteTask(id);
-    }
+    function deleteTask() {
+        props.setIsLoading(true);
 
-    function deleteTask(id) {
         fetch(
-            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks/' + id + '.json',
+            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks/' + props.taskId + '.json',
             {
-                method: 'DELETE',
-                headers: { 'Content-type': 'application/json' }
+                method: 'DELETE'
             }
         ).then(() => {
-            console.log("udalo sie");
+            fetch(
+                'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
+              ).then(response => {
+                  return response.json();
+              }).then(data => {
+                const tempData = [];
+        
+                for (const key in data) {
+                  const item = {
+                    id: key,
+                    ...data[key]
+                  };
+        
+                  tempData.push(item);
+                }
+        
+                props.setIsLoading(false);
+                props.setFetchedData(tempData);
+              });
         });
     }
 
@@ -40,7 +55,7 @@ function TaskItem(props) {
                 <h3>{props.assignedUser}</h3>
                 <div className={classes.item__buttons}>
                     <button className={classes.item__btn} onClick={showDetails}>Show more</button>
-                    <button className={classes.item__btn}>Delete</button>
+                    <button className={classes.item__btn} onClick={deleteTask}>Delete</button>
                 </div>
             </div>
             { detailsAreOpen && 

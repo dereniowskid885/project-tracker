@@ -14,6 +14,37 @@ function ProjectItem(props) {
         setDetailsState(false);
     }
 
+    function deleteProject() {
+        props.setIsLoading(true);
+        
+        fetch(
+            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects/' + props.projectId + '.json',
+            {
+                method: 'DELETE'
+            }
+        ).then(() => {
+            fetch(
+                'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects.json'
+              ).then(response => {
+                  return response.json();
+              }).then(data => {
+                const tempData = [];
+        
+                for (const key in data) {
+                  const item = {
+                    id: key,
+                    ...data[key]
+                  };
+        
+                  tempData.push(item);
+                }
+        
+                props.setIsLoading(false);
+                props.setFetchedData(tempData);
+              });
+        });
+    }
+
     return (
         <div>
             <div className={classes.item}>
@@ -25,7 +56,7 @@ function ProjectItem(props) {
                 </ol>
                 <div className={classes.item__buttons}>
                     <button className={classes.item__btn} onClick={showDetails}>Show more</button>
-                    <button className={classes.item__btn} onClick={showDetails}>Delete</button>
+                    <button className={classes.item__btn} onClick={deleteProject}>Delete</button>
                 </div>
             </div>
             { detailsAreOpen && 

@@ -1,6 +1,7 @@
 import classes from '../../styles/Items.module.scss';
 import TaskItem from '../TaskItem';
 import { useState, useEffect } from 'react';
+import BeatLoader from 'react-spinners/BeatLoader';
 
 function Tasks() {
     const [ isLoading, setIsLoading ] = useState(true);
@@ -32,8 +33,8 @@ function Tasks() {
 
     if (isLoading) {
         return (
-            <div>
-                <h1>Loading...</h1>
+            <div className={classes.loader}>
+                <BeatLoader color={'#6b6b83a4'} />
             </div>
         );
     }
@@ -43,12 +44,14 @@ function Tasks() {
             { fetchedData.map((item) => (
                 <TaskItem
                     key={item.id}
-                    projectId={item.id}
+                    taskId={item.id}
                     projectName={item.projectName}
                     taskPriority={item.taskPriority}
                     taskName={item.taskName}
                     assignedUser={item.assignedUser}
                     taskDescription={item.taskDescription}
+                    setIsLoading={setIsLoading}
+                    setFetchedData={setFetchedData}
                 />
             ))}
         </main>
