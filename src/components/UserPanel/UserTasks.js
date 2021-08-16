@@ -3,10 +3,10 @@ import TaskItem from '../TaskItem';
 import { useState, useEffect } from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
 
-function Tasks() {
+function UserTasks(props) {
     const [ isLoading, setIsLoading ] = useState(true);
     const [ fetchedData, setFetchedData ] = useState([]);
-    const [ noTasks, setNoTasksState ] = useState(false);
+    const userTasks = [];
 
     useEffect(() => {
         setIsLoading(true);
@@ -26,16 +26,19 @@ function Tasks() {
 
             tempData.push(item);
             }
-
+  
             setIsLoading(false);
-
-            if(tempData.length === 0) {
-                setNoTasksState(true);
-            } else {
-                setFetchedData(tempData);
-            }
+            setFetchedData(tempData);
         });
     }, []);
+
+    if (fetchedData.length !== 0) {
+        fetchedData.forEach((task) => {
+            if (task.assignedUser === props.userLoggedIn) {
+                userTasks.push(task);
+            }
+        });
+    }
 
     if (isLoading) {
         return (
@@ -45,17 +48,17 @@ function Tasks() {
         );
     }
 
-    if (noTasks) {
+    if (userTasks.length === 0) {
         return (
             <div>
-                <h1>There are no tasks yet.</h1>
+                <h1>You have no tasks assigned yet.</h1>
             </div>
         );
     }
 
     return (
-        <main className={classes.content}>
-            { fetchedData.map((item) => (
+        <div className={classes.content + ' ' + classes.panel}>
+            { userTasks.map((item) => (
                 <TaskItem
                     key={item.id}
                     taskId={item.id}
@@ -68,8 +71,8 @@ function Tasks() {
                     setFetchedData={setFetchedData}
                 />
             ))}
-        </main>
+        </div>
     );
 }
 
-export default Tasks;
+export default UserTasks;

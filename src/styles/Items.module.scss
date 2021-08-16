@@ -19,6 +19,10 @@
     transform: translate(-50%, -50%);
 }
 
+.panel {
+    text-align: left;
+}
+
 @media only screen and (max-width: 1440px) {
     .content {
         height: 75vh;

@@ -15,6 +15,7 @@ function TaskItem(props) {
     }
 
     function deleteTask() {
+        setDetailsState(false);
         props.setIsLoading(true);
 
         fetch(
@@ -25,23 +26,23 @@ function TaskItem(props) {
         ).then(() => {
             fetch(
                 'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
-              ).then(response => {
-                  return response.json();
-              }).then(data => {
+                ).then(response => {
+                    return response.json();
+                }).then(data => {
                 const tempData = [];
         
                 for (const key in data) {
-                  const item = {
+                    const item = {
                     id: key,
                     ...data[key]
-                  };
+                    };
         
-                  tempData.push(item);
+                    tempData.push(item);
                 }
         
                 props.setIsLoading(false);
                 props.setFetchedData(tempData);
-              });
+            });
         });
     }
 
@@ -66,6 +67,7 @@ function TaskItem(props) {
                     assignedUser={props.assignedUser}
                     taskDescription={props.taskDescription}
                     onCloseBtnClick={closeDetails}
+                    onDeleteBtnClick={deleteTask}
                 />
             }
             { detailsAreOpen && 

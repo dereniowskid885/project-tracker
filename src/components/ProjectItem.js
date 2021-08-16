@@ -15,6 +15,7 @@ function ProjectItem(props) {
     }
 
     function deleteProject() {
+        setDetailsState(false);
         props.setIsLoading(true);
         
         fetch(
@@ -65,6 +66,7 @@ function ProjectItem(props) {
                     projectDescription={props.projectDescription}
                     projectMembers={props.projectMembers}
                     onCloseBtnClick={closeDetails}
+                    onDeleteBtnClick={deleteProject}
                 />
             }
             { detailsAreOpen && 

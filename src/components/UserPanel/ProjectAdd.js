@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import classes from "../styles/ItemAdd.module.scss";
+import classes from "../../styles/ItemAdd.module.scss";
 
 function ProjectAdd(props) {
     const [ userList, setUserList ] = useState([]);

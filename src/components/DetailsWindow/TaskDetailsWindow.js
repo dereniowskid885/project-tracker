@@ -13,7 +13,7 @@ function TaskDetailsWindow(props) {
             <div className={classes.window__buttons}>
                 <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Edit</button>
                 <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Close</button>
-                <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Delete</button>
+                <button className={classes.window__btn} onClick={props.onDeleteBtnClick}>Delete</button>
             </div>
         </div>
     );

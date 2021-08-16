@@ -28,14 +28,14 @@ function ProjectDetailsWindow(props) {
                     <div className={classes.window__buttons + ' ' + classes.window__buttonsDetails}>
                         <button className={classes.window__btn} onClick={hideTasks}>Hide Tasks</button>
                         <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Close</button>
-                        <button className={classes.window__btn}>Delete</button>
+                        <button className={classes.window__btn} onClick={props.onDeleteBtnClick}>Delete</button>
                     </div>
                 </div>
                 :
                 <div className={classes.window__buttons}>
                     <button className={classes.window__btn} onClick={showTasks}>Show Tasks</button>
                     <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Close</button>
-                    <button className={classes.window__btn}>Delete</button>
+                    <button className={classes.window__btn} onClick={props.onDeleteBtnClick}>Delete</button>
                 </div>
             }
         </div>

@@ -1,18 +1,18 @@
 import classes from '../../styles/Items.module.scss';
-import TaskItem from '../TaskItem';
+import ProjectItem from '../ProjectItem';
 import { useState, useEffect } from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
 
-function Tasks() {
+function UserProjects(props) {
     const [ isLoading, setIsLoading ] = useState(true);
     const [ fetchedData, setFetchedData ] = useState([]);
-    const [ noTasks, setNoTasksState ] = useState(false);
+    const userProjects = [];
 
     useEffect(() => {
         setIsLoading(true);
   
         fetch(
-          'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
+          'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects.json'
         ).then(response => {
             return response.json();
         }).then(data => {
@@ -26,16 +26,21 @@ function Tasks() {
 
             tempData.push(item);
             }
-
+  
             setIsLoading(false);
-
-            if(tempData.length === 0) {
-                setNoTasksState(true);
-            } else {
-                setFetchedData(tempData);
-            }
+            setFetchedData(tempData);
         });
     }, []);
+
+    if (fetchedData.length !== 0) {
+        fetchedData.forEach((project) => {
+            project.projectMembers.forEach((member) => {
+                if (member === props.userLoggedIn) {
+                    userProjects.push(project);
+                }
+            });
+        });
+    }
 
     if (isLoading) {
         return (
@@ -45,31 +50,29 @@ function Tasks() {
         );
     }
 
-    if (noTasks) {
+    if (userProjects.length === 0) {
         return (
             <div>
-                <h1>There are no tasks yet.</h1>
+                <h1>You are not assigned to any project yet.</h1>
             </div>
         );
     }
 
     return (
-        <main className={classes.content}>
-            { fetchedData.map((item) => (
-                <TaskItem
+        <div className={classes.content + ' ' + classes.panel}>
+            { userProjects.map((item) => (
+                <ProjectItem
                     key={item.id}
-                    taskId={item.id}
+                    projectId={item.id}
                     projectName={item.projectName}
-                    taskPriority={item.taskPriority}
-                    taskName={item.taskName}
-                    assignedUser={item.assignedUser}
-                    taskDescription={item.taskDescription}
+                    projectDescription={item.projectDescription}
+                    projectMembers={item.projectMembers}
                     setIsLoading={setIsLoading}
                     setFetchedData={setFetchedData}
                 />
             ))}
-        </main>
+        </div>
     );
 }
 
-export default Tasks;
+export default UserProjects;
