@@ -69,6 +69,7 @@ function UserTasks(props) {
                     taskDescription={item.taskDescription}
                     setIsLoading={setIsLoading}
                     setFetchedData={setFetchedData}
+                    userLoggedIn={props.loggedIn}
                 />
             ))}
         </div>

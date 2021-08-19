@@ -82,8 +82,8 @@ function UserPanel(props) {
             { projectAddIsOpen && <ProjectAdd sendData={sendData} onCloseBtnClick={closeDetails} /> }
             { taskAddIsOpen && <TaskAdd sendData={sendData} onCloseBtnClick={closeDetails} /> }
             { ((projectAddIsOpen && detailsAreOpen) || (taskAddIsOpen && detailsAreOpen)) && <DetailsBackground onCloseBtnClick={closeDetails} /> }
-            { userTasksAreOpen && <UserTasks userLoggedIn={props.userDetails.username} /> }
-            { userProjectsAreOpen && <UserProjects userLoggedIn={props.userDetails.username} /> }
+            { userTasksAreOpen && <UserTasks userLoggedIn={props.userDetails.username} loggedIn={props.userDetails.loggedIn} /> }
+            { userProjectsAreOpen && <UserProjects userLoggedIn={props.userDetails.username} loggedIn={props.userDetails.loggedIn} /> }
             { itemIsAdded && <h1 className={classes.panel__message}>Success !</h1> }
         </div>
     );

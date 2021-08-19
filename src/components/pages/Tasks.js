@@ -3,7 +3,7 @@ import TaskItem from '../TaskItem';
 import { useState, useEffect } from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
 
-function Tasks() {
+function Tasks(props) {
     const [ isLoading, setIsLoading ] = useState(true);
     const [ fetchedData, setFetchedData ] = useState([]);
     const [ noTasks, setNoTasksState ] = useState(false);
@@ -39,7 +39,7 @@ function Tasks() {
 
     if (isLoading) {
         return (
-            <div className={classes.loader}>
+            <div className={classes.alert}>
                 <BeatLoader color={'#6b6b83a4'} />
             </div>
         );
@@ -47,7 +47,7 @@ function Tasks() {
 
     if (noTasks) {
         return (
-            <div>
+            <div className={classes.alert}>
                 <h1>There are no tasks yet.</h1>
             </div>
         );
@@ -66,6 +66,7 @@ function Tasks() {
                     taskDescription={item.taskDescription}
                     setIsLoading={setIsLoading}
                     setFetchedData={setFetchedData}
+                    userLoggedIn={props.userDetails.loggedIn}
                 />
             ))}
         </main>

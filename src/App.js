@@ -30,10 +30,10 @@ function App() {
           <Home userDetails={user} setUserDetails={userDetails} />
         </Route>
         <Route path="/projects">
-          <Projects />
+          <Projects userDetails={user} />
         </Route>
         <Route path="/tasks">
-          <Tasks />
+          <Tasks userDetails={user} />
         </Route>
         <Route path="/about">
           <About />

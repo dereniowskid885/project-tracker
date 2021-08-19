@@ -12,7 +12,7 @@
     }
 }
 
-.loader {
+.alert {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -21,6 +21,11 @@
 
 .panel {
     text-align: left;
+}
+
+.detailsContent {
+    padding: 1em 0;
+    height: fit-content;
 }
 
 @media only screen and (max-width: 1440px) {

@@ -69,6 +69,7 @@ function UserProjects(props) {
                     projectMembers={item.projectMembers}
                     setIsLoading={setIsLoading}
                     setFetchedData={setFetchedData}
+                    userLoggedIn={props.loggedIn}
                 />
             ))}
         </div>

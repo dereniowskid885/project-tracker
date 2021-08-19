@@ -46,8 +46,9 @@
         }
     }
 
-    h1 {
-        font-size: calc(1rem + 3vw);
+    &__projectDescription,
+    &__taskName {
+        margin-top: 1rem;
     }
 
     &__priorityHigh {
@@ -69,8 +70,7 @@
 }
 
 .tasks {
-    margin: 1rem 0;
-    height: 0;
+    margin: 1.5rem 0;
 }
 
 .detailsContent {

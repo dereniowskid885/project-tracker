@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 function TaskItem(props) {
     const [ detailsAreOpen, setDetailsState ] = useState(false);
+    const [ userNotLoggedError, setUserNotLoggedErrorState ] = useState(false);
 
     function showDetails() {
         setDetailsState(true);
@@ -15,35 +16,41 @@ function TaskItem(props) {
     }
 
     function deleteTask() {
-        setDetailsState(false);
-        props.setIsLoading(true);
+        if (props.userLoggedIn) {
+            setUserNotLoggedErrorState(false);
+            setDetailsState(false);
+            props.setIsLoading(true);
 
-        fetch(
-            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks/' + props.taskId + '.json',
-            {
-                method: 'DELETE'
-            }
-        ).then(() => {
             fetch(
-                'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
-                ).then(response => {
-                    return response.json();
-                }).then(data => {
-                const tempData = [];
-        
-                for (const key in data) {
-                    const item = {
-                    id: key,
-                    ...data[key]
-                    };
-        
-                    tempData.push(item);
+                'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks/' + props.taskId + '.json',
+                {
+                    method: 'DELETE'
                 }
-        
-                props.setIsLoading(false);
-                props.setFetchedData(tempData);
+            ).then(() => {
+                fetch(
+                    'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
+                    ).then(response => {
+                        return response.json();
+                    }).then(data => {
+                    const tempData = [];
+            
+                    for (const key in data) {
+                        const item = {
+                        id: key,
+                        ...data[key]
+                        };
+            
+                        tempData.push(item);
+                    }
+            
+                    props.setIsLoading(false);
+                    props.setFetchedData(tempData);
+                });
             });
-        });
+        } else {
+            setUserNotLoggedErrorState(true);
+            setTimeout(() => { setUserNotLoggedErrorState(false); }, 3000);
+        }
     }
 
     return (
@@ -59,8 +66,10 @@ function TaskItem(props) {
                     <button className={classes.item__btn} onClick={deleteTask}>Delete</button>
                 </div>
             </div>
+            { userNotLoggedError && <h1 className={classes.item__message}>You must be logged in!</h1> }
             { detailsAreOpen && 
-                <TaskDetailsWindow 
+                <TaskDetailsWindow
+                    taskId={props.taskId}
                     projectName={props.projectName}
                     taskPriority={props.taskPriority}
                     taskName={props.taskName}

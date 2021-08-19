@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 function ProjectItem(props) {
     const [ detailsAreOpen, setDetailsState ] = useState(false);
+    const [ userNotLoggedError, setUserNotLoggedErrorState ] = useState(false);
 
     function showDetails() {
         setDetailsState(true);
@@ -15,35 +16,40 @@ function ProjectItem(props) {
     }
 
     function deleteProject() {
-        setDetailsState(false);
-        props.setIsLoading(true);
-        
-        fetch(
-            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects/' + props.projectId + '.json',
-            {
-                method: 'DELETE'
-            }
-        ).then(() => {
+        if (props.userLoggedIn) {
+            setDetailsState(false);
+            props.setIsLoading(true);
+            
             fetch(
-                'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects.json'
-              ).then(response => {
-                  return response.json();
-              }).then(data => {
-                const tempData = [];
-        
-                for (const key in data) {
-                  const item = {
-                    id: key,
-                    ...data[key]
-                  };
-        
-                  tempData.push(item);
+                'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects/' + props.projectId + '.json',
+                {
+                    method: 'DELETE'
                 }
-        
-                props.setIsLoading(false);
-                props.setFetchedData(tempData);
-              });
-        });
+            ).then(() => {
+                fetch(
+                    'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects.json'
+                ).then(response => {
+                    return response.json();
+                }).then(data => {
+                    const tempData = [];
+            
+                    for (const key in data) {
+                    const item = {
+                        id: key,
+                        ...data[key]
+                    };
+            
+                    tempData.push(item);
+                    }
+            
+                    props.setIsLoading(false);
+                    props.setFetchedData(tempData);
+                });
+            });
+        } else {
+            setUserNotLoggedErrorState(true);
+            setTimeout(() => { setUserNotLoggedErrorState(false); }, 3000);
+        }
     }
 
     return (
@@ -60,13 +66,14 @@ function ProjectItem(props) {
                     <button className={classes.item__btn} onClick={deleteProject}>Delete</button>
                 </div>
             </div>
+            { userNotLoggedError && <h1 className={classes.item__message}>You must be logged in!</h1> }
             { detailsAreOpen && 
-                <ProjectDetailsWindow 
+                <ProjectDetailsWindow
+                    projectId={props.projectId}
                     projectName={props.projectName}
                     projectDescription={props.projectDescription}
                     projectMembers={props.projectMembers}
                     onCloseBtnClick={closeDetails}
-                    onDeleteBtnClick={deleteProject}
                 />
             }
             { detailsAreOpen && 
