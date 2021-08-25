@@ -105,6 +105,8 @@ function ProjectDetailsWindow(props) {
                     projectDescription={props.projectDescription}
                     projectMembers={props.projectMembers}
                     onCloseBtnClick={hideProjectEdit}
+                    closeDetails={props.onCloseBtnClick}
+                    onEditComplete={props.onEditComplete}
                 />
             }
         </div>

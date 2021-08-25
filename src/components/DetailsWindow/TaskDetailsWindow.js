@@ -24,8 +24,8 @@ function TaskDetailsWindow(props) {
             <p>{props.taskDescription}</p>
             <div className={classes.window__buttons}>
                 <button className={classes.window__btn} onClick={showTaskEdit}>Edit</button>
-                <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Close</button>
                 <button className={classes.window__btn} onClick={props.onDeleteBtnClick}>Delete</button>
+                <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Close</button>
             </div>
             { taskEditIsOpen &&
                 <TaskEditWindow
@@ -36,6 +36,8 @@ function TaskDetailsWindow(props) {
                     assignedUser={props.assignedUser}
                     taskDescription={props.taskDescription}
                     onCloseBtnClick={hideTaskEdit}
+                    closeDetails={props.onCloseBtnClick}
+                    onEditComplete={props.onEditComplete}
                 /> 
             }
         </div>

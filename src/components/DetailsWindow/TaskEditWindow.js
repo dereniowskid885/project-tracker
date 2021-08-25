@@ -29,7 +29,9 @@ function TaskEditWindow(props) {
                 headers: { 'Content-type': 'application/json' }
             }
         ).then(() => {
-            window.location.reload(false);
+            props.onCloseBtnClick();
+            props.closeDetails();
+            props.onEditComplete();
         });
     }
 

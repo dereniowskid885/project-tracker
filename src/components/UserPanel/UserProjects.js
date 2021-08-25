@@ -8,6 +8,12 @@ function UserProjects(props) {
     const [ fetchedData, setFetchedData ] = useState([]);
     const userProjects = [];
 
+    function onEditComplete() {
+        setIsLoading(true);
+        setIsLoading(false);
+        props.reloadProjects();
+    }
+
     useEffect(() => {
         setIsLoading(true);
   
@@ -69,6 +75,7 @@ function UserProjects(props) {
                     projectMembers={item.projectMembers}
                     setIsLoading={setIsLoading}
                     setFetchedData={setFetchedData}
+                    onEditComplete={onEditComplete}
                     userLoggedIn={props.loggedIn}
                 />
             ))}

@@ -57,6 +57,16 @@ function UserPanel(props) {
         setProjectAddState(false);
     }
 
+    function reloadProjects() {
+        setUserProjectsState(false);
+        setUserProjectsState(true);
+    }
+
+    function reloadTasks() {
+        setUserTasksState(false);
+        setUserTasksState(true);
+    }
+
     function sendData(formData, table) {
         fetch(
             'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/' + table + '.json',
@@ -82,8 +92,8 @@ function UserPanel(props) {
             { projectAddIsOpen && <ProjectAdd sendData={sendData} onCloseBtnClick={closeDetails} /> }
             { taskAddIsOpen && <TaskAdd sendData={sendData} onCloseBtnClick={closeDetails} /> }
             { ((projectAddIsOpen && detailsAreOpen) || (taskAddIsOpen && detailsAreOpen)) && <DetailsBackground onCloseBtnClick={closeDetails} /> }
-            { userTasksAreOpen && <UserTasks userLoggedIn={props.userDetails.username} loggedIn={props.userDetails.loggedIn} /> }
-            { userProjectsAreOpen && <UserProjects userLoggedIn={props.userDetails.username} loggedIn={props.userDetails.loggedIn} /> }
+            { userTasksAreOpen && <UserTasks userLoggedIn={props.userDetails.username} loggedIn={props.userDetails.loggedIn} reloadTasks={reloadTasks}/> }
+            { userProjectsAreOpen && <UserProjects userLoggedIn={props.userDetails.username} loggedIn={props.userDetails.loggedIn} reloadProjects={reloadProjects}/> }
             { itemIsAdded && <h1 className={classes.panel__message}>Success !</h1> }
         </div>
     );

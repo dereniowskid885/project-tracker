@@ -77,6 +77,7 @@ function TaskItem(props) {
                     taskDescription={props.taskDescription}
                     onCloseBtnClick={closeDetails}
                     onDeleteBtnClick={deleteTask}
+                    onEditComplete={props.onEditComplete}
                 />
             }
             { detailsAreOpen && 

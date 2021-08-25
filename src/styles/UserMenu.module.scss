@@ -18,6 +18,8 @@
         margin: 0.3rem auto;
         @extend %btn-primary;
         font-size: calc(0.5rem + 0.8vw);
+        transform: unset;
+        left: 0;
 
         a {
             text-decoration: none;
@@ -26,8 +28,8 @@
     }
 
     &__info {
-        text-align: center;
         font-size: calc(0.5rem + 0.8vw);
         font-style: italic;
+        text-align: center;
     }
 }

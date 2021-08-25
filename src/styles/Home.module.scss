@@ -2,40 +2,8 @@
     margin: 0 auto;
     padding: 1em calc(1em + 3vw);
     text-align: center;
-    overflow: auto;
-    height: 73vh;
 
     &::-webkit-scrollbar {
         display: none;
-    }
-}
-
-@media only screen and (max-width: 1440px) {
-    .home {
-        height: 75vh;
-    }
-}
-
-@media only screen and (max-width: 1200px) {
-    .home {
-        height: 77vh;
-    }
-}
-
-@media only screen and (max-width: 1000px) {
-    .home {
-        height: 79vh;
-    }
-}
-
-@media only screen and (max-width: 800px) {
-    .home {
-        height: 81vh;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-    .home {
-        height: 83vh;
     }
 }

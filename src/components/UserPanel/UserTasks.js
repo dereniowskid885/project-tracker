@@ -8,6 +8,12 @@ function UserTasks(props) {
     const [ fetchedData, setFetchedData ] = useState([]);
     const userTasks = [];
 
+    function onEditComplete() {
+        setIsLoading(true);
+        setIsLoading(false);
+        props.reloadTasks();
+    }
+
     useEffect(() => {
         setIsLoading(true);
   
@@ -69,6 +75,7 @@ function UserTasks(props) {
                     taskDescription={item.taskDescription}
                     setIsLoading={setIsLoading}
                     setFetchedData={setFetchedData}
+                    onEditComplete={onEditComplete}
                     userLoggedIn={props.loggedIn}
                 />
             ))}

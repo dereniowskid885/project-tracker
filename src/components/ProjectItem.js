@@ -73,6 +73,7 @@ function ProjectItem(props) {
                     projectName={props.projectName}
                     projectDescription={props.projectDescription}
                     projectMembers={props.projectMembers}
+                    onEditComplete={props.onEditComplete}
                     onCloseBtnClick={closeDetails}
                 />
             }

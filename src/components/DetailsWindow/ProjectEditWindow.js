@@ -32,7 +32,9 @@ function ProjectEditWindow(props) {
                 headers: { 'Content-type': 'application/json' }
             }
         ).then(() => {
-            window.location.reload(false);
+            props.onCloseBtnClick();
+            props.closeDetails();
+            props.onEditComplete();
         });
     }
 
@@ -71,9 +73,9 @@ function ProjectEditWindow(props) {
                         }
                     });
                 });
-            });
 
-            setUserList(tempData);
+                setUserList(tempData);
+            });
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -119,7 +121,7 @@ function ProjectEditWindow(props) {
                     </fieldset>
                 </div>
                 <div className={classes.itemAdd__buttons}>
-                    <button className={classes.itemAdd__btn} type="submit">Add</button>
+                    <button className={classes.itemAdd__btn} type="submit">Confirm</button>
                     <button className={classes.itemAdd__btn} onClick={clearForm}>Clear</button>
                     <button className={classes.itemAdd__btn} onClick={props.onCloseBtnClick}>Back</button>
                 </div>

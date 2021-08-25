@@ -1,9 +1,6 @@
 @import './variables';
 
 .panel {
-    height: 93vh;
-    overflow: auto;
-
     &::-webkit-scrollbar {
         display: none;
     }
