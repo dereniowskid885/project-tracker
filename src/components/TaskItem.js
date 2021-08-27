@@ -26,8 +26,6 @@ function TaskItem(props) {
                     method: 'DELETE'
                 }
             ).then(() => {
-                props.setIsLoading(false);
-
                 if (props.detailsWindowInit === true) {
                     props.reloadTasks();
                 } else {
@@ -46,7 +44,8 @@ function TaskItem(props) {
                 
                             tempData.push(item);
                         }
-                
+                        
+                        props.setIsLoading(false);
                         props.setFetchedData(tempData);
                     });
                 }

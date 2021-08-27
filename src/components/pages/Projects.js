@@ -19,12 +19,12 @@ function Projects(props) {
             const tempData = [];
 
             for (const key in data) {
-            const item = {
-                id: key,
-                ...data[key]
-            };
+                const item = {
+                    id: key,
+                    ...data[key]
+                };
 
-            tempData.push(item);
+                tempData.push(item);
             }
 
             setIsLoading(false);
@@ -56,7 +56,7 @@ function Projects(props) {
     }
 
     return (
-        <main className={classes.content}>
+        <div className={classes.content}>
             { fetchedData.map((item) => (
                 <ProjectItem
                     key={item.id}
@@ -66,12 +66,12 @@ function Projects(props) {
                     projectMembers={item.projectMembers}
                     setIsLoading={setIsLoading}
                     setFetchedData={setFetchedData}
-                    userLoggedIn={props.userLoggedIn}
                     reloadProjects={fetchProjects}
+                    userLoggedIn={props.userLoggedIn}
                     userPanelInit={false}
                 />
             ))}
-        </main>
+        </div>
     );
 }
 

@@ -56,7 +56,7 @@ function Tasks(props) {
     }
 
     return (
-        <main className={classes.content}>
+        <div className={classes.content}>
             { fetchedData.map((item) => (
                 <TaskItem
                     key={item.id}
@@ -73,7 +73,7 @@ function Tasks(props) {
                     detailsWindowInit={false}
                 />
             ))}
-        </main>
+        </div>
     );
 }
 

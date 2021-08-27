@@ -10,36 +10,36 @@ import { Route, Switch } from 'react-router-dom';
 import { useState } from 'react';
 
 function App() {
-  const [ user, setUser ] = useState({ username: "", loggedIn: false });
+  const [ userDetails, setUserDetails ] = useState({ username: "", loggedIn: false });
 
-  function userDetails(obj) {
-    setUser({ username: obj.username, loggedIn: true });
+  function setUser(obj) {
+    setUserDetails({ username: obj.username, loggedIn: true });
   }
 
   function logoutUser() {
-    setUser({ username: "", loggedIn: false });
+    setUserDetails({ username: "", loggedIn: false });
   }
 
   return (
-    <div className={classes.container}>
+    <main className={classes.container}>
       <Logo />
-      <UserMenu userDetails={user} logoutUser={logoutUser} />
+      <UserMenu userDetails={userDetails} logoutUser={logoutUser} />
       <MainNavigation />
       <Switch>
         <Route path="/" exact>
-          <Home userDetails={user} setUserDetails={userDetails} />
+          <Home userDetails={userDetails} setUserDetails={setUser} />
         </Route>
         <Route path="/projects">
-          <Projects userLoggedIn={user.loggedIn} />
+          <Projects userLoggedIn={userDetails.loggedIn} />
         </Route>
         <Route path="/tasks">
-          <Tasks userLoggedIn={user.loggedIn} />
+          <Tasks userLoggedIn={userDetails.loggedIn} />
         </Route>
         <Route path="/about">
           <About />
         </Route>
       </Switch>
-    </div>
+    </main>
   );
 }
 

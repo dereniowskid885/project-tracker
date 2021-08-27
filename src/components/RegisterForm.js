@@ -2,24 +2,23 @@ import classes from '../styles/LoginForm.module.scss';
 import { useState, useRef } from 'react';
 
 function RegisterForm(props) {
-    const [ passwordConfirmError, setErrorState ] = useState(false);
-    const [ registerComplete, setRegisterState ] = useState(false);
+    const [ passwordConfirmError, setPasswordConfirmErrorState ] = useState(false);
+    const [ registerComplete, setRegisterCompleteState ] = useState(false);
 
     const usernameRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
 
-    function registerAlert() {
-        setRegisterState(true);
-        setTimeout(() => { setRegisterState(false); window.location.reload(false); }, 3000);
+    function showRegisterCompleteAlert() {
+        setRegisterCompleteState(true);
+        setTimeout(() => { setRegisterCompleteState(false); window.location.reload(false); }, 3000);
     }
 
     function submitHandler(e) {
         e.preventDefault();
         
-        if (passwordRef.current.value === passwordConfirmRef.current.value)
-        {
-            setErrorState(false);
+        if (passwordRef.current.value === passwordConfirmRef.current.value) {
+            setPasswordConfirmErrorState(false);
 
             const formData = {
                 username: usernameRef.current.value,
@@ -34,25 +33,39 @@ function RegisterForm(props) {
                     headers: { 'Content-type': 'application/json' }
                 }
             ).then(() => {
-                registerAlert();
+                showRegisterCompleteAlert();
             });
         } else {
-            setErrorState(true);
-            setTimeout(() => { setErrorState(false); }, 3000);
+            setPasswordConfirmErrorState(true);
+            setTimeout(() => { setPasswordConfirmErrorState(false); }, 3000);
         }
     }
 
     return (
         <div className={classes.login}>
             <form className={classes.login__form} onSubmit={submitHandler}>
-                <h2>Username</h2><input type="text" name="username" ref={usernameRef} required />
-                <h2>Password</h2><input type="password" name="password" ref={passwordRef} required />
-                <h2>Confirm password</h2><input type="password" name="confirm_password" ref={passwordConfirmRef} required /><br />
-                <button className={classes.login__btn} onClick={props.backBtnClick}>Back</button>
-                <button className={classes.login__btn}>Submit</button>
+                <label htmlFor="username">
+                    <h2>Username</h2>
+                </label>
+                <input type="text" name="username" ref={usernameRef} required />
+                <label htmlFor="password">
+                    <h2>Password</h2>
+                </label>
+                <input type="password" name="password" ref={passwordRef} required />
+                <label htmlFor="confirm_password">
+                    <h2>Confirm password</h2>
+                </label>
+                <input type="password" name="confirm_password" ref={passwordConfirmRef} required />
+                <br />
+                <button className={classes.login__btn} onClick={props.onBackBtnClick}>Back</button>
+                <button className={classes.login__btn} type="submit">Submit</button>
             </form>
-            { passwordConfirmError && <h2>Passwords do not match.</h2> }
-            { registerComplete && <h1 className={classes.login__message}>Account created !</h1> }
+            { passwordConfirmError &&
+                <h2>Passwords do not match.</h2>
+            }
+            { registerComplete &&
+                <h1 className={classes.login__message}>Account created !</h1>
+            }
         </div>
     );
 }

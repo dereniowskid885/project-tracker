@@ -5,27 +5,28 @@ import classes from '../../styles/Home.module.scss';
 import { useState, useEffect } from 'react';
 
 function Home(props) {
-    const [ regFormIsOpen, setFormState ] = useState(false);
-    const [ loginError, setErrorState ] = useState(false);
-    const [ users, setUsersData ] = useState([]);
+    const [ registerFormIsOpen, setRegisterFormState ] = useState(false);
+    const [ loginError, setLoginErrorState ] = useState(false);
+    const [ users, setUsers ] = useState([]);
 
     useEffect(() => {
         fetch(
-          'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/users.json'
+            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/users.json'
         ).then(response => {
             return response.json();
         }).then(data => {
-          const tempData = [];
-  
-          for (const key in data) {
-            const item = {
-              id: key,
-              ...data[key]
-            };
-  
-            tempData.push(item);
-          }
-          setUsersData(tempData);
+            const tempData = [];
+
+            for (const key in data) {
+                const item = {
+                    id: key,
+                    ...data[key]
+                };
+
+                tempData.push(item);
+            }
+
+            setUsers(tempData);
         });
     }, []);
 
@@ -35,41 +36,43 @@ function Home(props) {
         users.forEach(user => {
             if (userDetails.username === user.username && userDetails.password === user.password) {
                 userAuth = true;
-                setErrorState(false);
+                setLoginErrorState(false);
                 props.setUserDetails(userDetails);
             }
         });
 
         if (!userAuth) {
-            setErrorState(true);
-            setTimeout(() => { setErrorState(false); }, 3000);
+            setLoginErrorState(true);
+            setTimeout(() => { setLoginErrorState(false); }, 3000);
         }
     }
 
-    function showRegForm() {
-        setFormState(true);
+    function showRegisterForm() {
+        setRegisterFormState(true);
     }
 
-    function showLogForm() {
-        setFormState(false);
+    function showLoginForm() {
+        setRegisterFormState(false);
     }
 
     return (
-        <main className={classes.home}>
+        <div className={classes.home}>
             { props.userDetails.loggedIn ?
-                <UserPanel userDetails={props.userDetails}/>
+                <UserPanel userDetails={props.userDetails} />
             : 
-                <div>
+                <div className={classes.home__form}>
                     <h1>Login, or register your account first.</h1>
-                    { regFormIsOpen ?
-                        <RegisterForm backBtnClick={showLogForm} />
+                    { registerFormIsOpen ?
+                        <RegisterForm onBackBtnClick={showLoginForm} />
                     : 
-                        <LoginForm regBtnClick={showRegForm} loginUser={loginUser} />
+                        <LoginForm onRegisterBtnClick={showRegisterForm} loginUser={loginUser} />
                     }
-                    { loginError && <h2>Username, or password is incorrect.</h2> }
+                    { loginError &&
+                        <h2>Username, or password is incorrect.</h2>
+                    }
                 </div>
             }
-        </main>
+        </div>
     );
 }
 

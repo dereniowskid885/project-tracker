@@ -9,10 +9,10 @@ import DetailsBackground from '../DetailsWindow/DetailsBackground';
 function UserPanel(props) {
     const [ projectAddIsOpen, setProjectAddState ] = useState(false);
     const [ taskAddIsOpen, setTaskAddState ] = useState(false);
-    const [ itemWasAdded, setItemAddState ] = useState(false);
     const [ detailsAreOpen, setDetailsState ] = useState(false);
     const [ userTasksAreOpen, setUserTasksState ] = useState(false);
     const [ userProjectsAreOpen, setUserProjectsState ] = useState(false);
+    const [ itemIsAdded, setItemAddState ] = useState(false);
 
     function showProjectAdd() {
         setTaskAddState(false);
@@ -101,11 +101,6 @@ function UserPanel(props) {
                     onCloseBtnClick={closeDetails} 
                 /> 
             }
-            { ((projectAddIsOpen && detailsAreOpen) || (taskAddIsOpen && detailsAreOpen)) && 
-                <DetailsBackground 
-                    onCloseBtnClick={closeDetails} 
-                /> 
-            }
             { userTasksAreOpen && 
                 <UserTasks 
                     userLoggedIn={props.userDetails.username} 
@@ -120,8 +115,13 @@ function UserPanel(props) {
                     reloadUserProjects={reloadUserProjects}
                 /> 
             }
-            { itemWasAdded &&
+            { itemIsAdded &&
                 <h1 className={classes.panel__message}>Success !</h1>
+            }
+            { ((projectAddIsOpen && detailsAreOpen) || (taskAddIsOpen && detailsAreOpen)) && 
+                <DetailsBackground 
+                    onCloseBtnClick={closeDetails} 
+                /> 
             }
         </div>
     );

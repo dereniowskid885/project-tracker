@@ -51,18 +51,18 @@ function TaskEditWindow(props) {
         ).then(response => {
             return response.json();
         }).then(data => {
-          const tempData = [];
-  
-          for (const key in data) {
-            const item = {
-              id: key,
-              ...data[key]
-            };
-  
-            tempData.push(item);
-          }
+            const tempData = [];
 
-          setUserList(tempData);
+            for (const key in data) {
+            const item = {
+                id: key,
+                ...data[key]
+            };
+
+            tempData.push(item);
+            }
+
+            setUserList(tempData);
         });
     }, []);
 

@@ -65,7 +65,8 @@ function ProjectDetailsWindow(props) {
         });
     }
 
-    useEffect(() => { fetchTasks();
+    useEffect(() => { 
+        fetchTasks();
         // eslint-disable-next-line
     }, []);
 

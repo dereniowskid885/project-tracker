@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
 import classes from '../../styles/ItemAdd.module.scss';
+import { useState, useRef, useEffect } from 'react';
 
 function TaskAdd(props) {
     const [ userList, setUserList ] = useState([]);
@@ -25,46 +25,30 @@ function TaskAdd(props) {
         props.sendData(formData, 'tasks');
     }
 
-    useEffect(() => {
+    function fetchData(table, setList) {
         fetch(
-          'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/users.json'
+            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/' + table + '.json'
         ).then(response => {
             return response.json();
         }).then(data => {
-          const tempData = [];
-  
-          for (const key in data) {
-            const item = {
-              id: key,
-              ...data[key]
-            };
-  
-            tempData.push(item);
-          }
+            const tempData = [];
+    
+            for (const key in data) {
+                const item = {
+                    id: key,
+                    ...data[key]
+                };
+    
+                tempData.push(item);
+            }
 
-          setUserList(tempData);
+            setList(tempData);
         });
-    }, []);
+    }
 
     useEffect(() => {
-        fetch(
-          'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects.json'
-        ).then(response => {
-            return response.json();
-        }).then(data => {
-          const tempData = [];
-  
-          for (const key in data) {
-            const item = {
-              id: key,
-              ...data[key]
-            };
-  
-            tempData.push(item);
-          }
-          
-          setProjectList(tempData);
-        });
+        fetchData('users', setUserList);
+        fetchData('projects', setProjectList);
     }, []);
 
     return (

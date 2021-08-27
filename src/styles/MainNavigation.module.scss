@@ -1,6 +1,6 @@
 @import './_variables.scss';
 
-nav {
+.nav {
     font-size: calc(1.2rem + 0.5vw);
     background: #76334e6b;
     box-shadow: 0 2px 40px rgba(0, 0, 0, 0.1);
@@ -11,7 +11,7 @@ nav {
     -moz-user-select: none;
     user-select: none;
 
-    & > ul {
+    &__menu {
         display: flex;
         justify-content: space-around;
 

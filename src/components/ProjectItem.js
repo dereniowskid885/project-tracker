@@ -34,12 +34,12 @@ function ProjectItem(props) {
                     const tempData = [];
             
                     for (const key in data) {
-                    const item = {
-                        id: key,
-                        ...data[key]
-                    };
+                        const item = {
+                            id: key,
+                            ...data[key]
+                        };
             
-                    tempData.push(item);
+                        tempData.push(item);
                     }
             
                     props.setIsLoading(false);
