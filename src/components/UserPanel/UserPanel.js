@@ -9,7 +9,7 @@ import DetailsBackground from '../DetailsWindow/DetailsBackground';
 function UserPanel(props) {
     const [ projectAddIsOpen, setProjectAddState ] = useState(false);
     const [ taskAddIsOpen, setTaskAddState ] = useState(false);
-    const [ itemIsAdded, setItemAddState ] = useState(false);
+    const [ itemWasAdded, setItemAddState ] = useState(false);
     const [ detailsAreOpen, setDetailsState ] = useState(false);
     const [ userTasksAreOpen, setUserTasksState ] = useState(false);
     const [ userProjectsAreOpen, setUserProjectsState ] = useState(false);
@@ -57,12 +57,12 @@ function UserPanel(props) {
         setProjectAddState(false);
     }
 
-    function reloadProjects() {
+    function reloadUserProjects() {
         setUserProjectsState(false);
         setUserProjectsState(true);
     }
 
-    function reloadTasks() {
+    function reloadUserTasks() {
         setUserTasksState(false);
         setUserTasksState(true);
     }
@@ -89,12 +89,40 @@ function UserPanel(props) {
                 <button className={classes.panel__btn} onClick={showUserTasks}>Show your tasks</button>
                 <button className={classes.panel__btn} onClick={showTaskAdd}>Add Task</button>
             </div>
-            { projectAddIsOpen && <ProjectAdd sendData={sendData} onCloseBtnClick={closeDetails} /> }
-            { taskAddIsOpen && <TaskAdd sendData={sendData} onCloseBtnClick={closeDetails} /> }
-            { ((projectAddIsOpen && detailsAreOpen) || (taskAddIsOpen && detailsAreOpen)) && <DetailsBackground onCloseBtnClick={closeDetails} /> }
-            { userTasksAreOpen && <UserTasks userLoggedIn={props.userDetails.username} loggedIn={props.userDetails.loggedIn} reloadTasks={reloadTasks}/> }
-            { userProjectsAreOpen && <UserProjects userLoggedIn={props.userDetails.username} loggedIn={props.userDetails.loggedIn} reloadProjects={reloadProjects}/> }
-            { itemIsAdded && <h1 className={classes.panel__message}>Success !</h1> }
+            { projectAddIsOpen && 
+                <ProjectAdd 
+                    sendData={sendData} 
+                    onCloseBtnClick={closeDetails} 
+                /> 
+            }
+            { taskAddIsOpen && 
+                <TaskAdd 
+                    sendData={sendData} 
+                    onCloseBtnClick={closeDetails} 
+                /> 
+            }
+            { ((projectAddIsOpen && detailsAreOpen) || (taskAddIsOpen && detailsAreOpen)) && 
+                <DetailsBackground 
+                    onCloseBtnClick={closeDetails} 
+                /> 
+            }
+            { userTasksAreOpen && 
+                <UserTasks 
+                    userLoggedIn={props.userDetails.username} 
+                    loggedIn={props.userDetails.loggedIn} 
+                    reloadUserTasks={reloadUserTasks}
+                /> 
+            }
+            { userProjectsAreOpen &&
+                <UserProjects 
+                    userLoggedIn={props.userDetails.username} 
+                    loggedIn={props.userDetails.loggedIn} 
+                    reloadUserProjects={reloadUserProjects}
+                /> 
+            }
+            { itemWasAdded &&
+                <h1 className={classes.panel__message}>Success !</h1>
+            }
         </div>
     );
 }

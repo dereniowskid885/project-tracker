@@ -8,11 +8,11 @@ function Projects(props) {
     const [ fetchedData, setFetchedData ] = useState([]);
     const [ noProjects, setNoProjectsState ] = useState(false);
 
-    useEffect(() => {
+    function fetchProjects() {
         setIsLoading(true);
-  
+    
         fetch(
-          'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects.json'
+            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects.json'
         ).then(response => {
             return response.json();
         }).then(data => {
@@ -35,7 +35,9 @@ function Projects(props) {
                 setFetchedData(tempData);
             }
         });
-    }, []);
+    }
+
+    useEffect(() => { fetchProjects(); }, []);
 
     if (isLoading) {
         return (
@@ -64,7 +66,9 @@ function Projects(props) {
                     projectMembers={item.projectMembers}
                     setIsLoading={setIsLoading}
                     setFetchedData={setFetchedData}
-                    userLoggedIn={props.userDetails.loggedIn}
+                    userLoggedIn={props.userLoggedIn}
+                    reloadProjects={fetchProjects}
+                    userPanelInit={false}
                 />
             ))}
         </main>

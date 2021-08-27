@@ -31,7 +31,12 @@ function TaskEditWindow(props) {
         ).then(() => {
             props.onCloseBtnClick();
             props.closeDetails();
-            props.onEditComplete();
+
+            if (props.userPanelInit === true) {
+                props.reloadUserTasks();
+            } else {
+                props.reloadTasks();
+            }
         });
     }
 

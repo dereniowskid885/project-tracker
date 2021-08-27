@@ -4,9 +4,15 @@ import { useState } from 'react';
 
 function TaskDetailsWindow(props) {
     const [ taskEditIsOpen, setTaskEditState ] = useState(false);
+    const [ userNotLoggedIn, setUserNotLoggedInState ] = useState(false);
 
     function showTaskEdit() {
-        setTaskEditState(true);
+        if (props.userLoggedIn) {
+            setTaskEditState(true);
+        } else {
+            setUserNotLoggedInState(true);
+            setTimeout(() => { setUserNotLoggedInState(false); }, 3000);
+        }
     }
 
     function hideTaskEdit() {
@@ -37,8 +43,13 @@ function TaskDetailsWindow(props) {
                     taskDescription={props.taskDescription}
                     onCloseBtnClick={hideTaskEdit}
                     closeDetails={props.onCloseBtnClick}
-                    onEditComplete={props.onEditComplete}
+                    reloadUserTasks={props.reloadUserTasks}
+                    reloadTasks={props.reloadTasks}
+                    userPanelInit={props.userPanelInit}
                 /> 
+            }
+            { userNotLoggedIn &&
+                <h1 className={classes.window__message}>You must be logged in!</h1>
             }
         </div>
     );

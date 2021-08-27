@@ -50,6 +50,8 @@
         bottom: 0;
         right: 0;
         padding: 0.3rem 1rem;
+        font-size: calc(1.5rem + 0.5vw);
+        z-index: 2;
     }
 
     ol {

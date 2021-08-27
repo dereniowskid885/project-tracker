@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 function TaskItem(props) {
     const [ detailsAreOpen, setDetailsState ] = useState(false);
-    const [ userNotLoggedError, setUserNotLoggedErrorState ] = useState(false);
+    const [ userNotLoggedIn, setUserNotLoggedInState ] = useState(false);
 
     function showDetails() {
         setDetailsState(true);
@@ -17,7 +17,6 @@ function TaskItem(props) {
 
     function deleteTask() {
         if (props.userLoggedIn) {
-            setUserNotLoggedErrorState(false);
             setDetailsState(false);
             props.setIsLoading(true);
 
@@ -27,29 +26,34 @@ function TaskItem(props) {
                     method: 'DELETE'
                 }
             ).then(() => {
-                fetch(
-                    'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
-                    ).then(response => {
-                        return response.json();
-                    }).then(data => {
-                    const tempData = [];
-            
-                    for (const key in data) {
-                        const item = {
-                        id: key,
-                        ...data[key]
-                        };
-            
-                        tempData.push(item);
-                    }
-            
-                    props.setIsLoading(false);
-                    props.setFetchedData(tempData);
-                });
+                props.setIsLoading(false);
+
+                if (props.detailsWindowInit === true) {
+                    props.reloadTasks();
+                } else {
+                    fetch(
+                        'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
+                        ).then(response => {
+                            return response.json();
+                        }).then(data => {
+                        const tempData = [];
+                
+                        for (const key in data) {
+                            const item = {
+                            id: key,
+                            ...data[key]
+                            };
+                
+                            tempData.push(item);
+                        }
+                
+                        props.setFetchedData(tempData);
+                    });
+                }
             });
         } else {
-            setUserNotLoggedErrorState(true);
-            setTimeout(() => { setUserNotLoggedErrorState(false); }, 3000);
+            setUserNotLoggedInState(true);
+            setTimeout(() => { setUserNotLoggedInState(false); }, 3000);
         }
     }
 
@@ -66,7 +70,6 @@ function TaskItem(props) {
                     <button className={classes.item__btn} onClick={deleteTask}>Delete</button>
                 </div>
             </div>
-            { userNotLoggedError && <h1 className={classes.item__message}>You must be logged in!</h1> }
             { detailsAreOpen && 
                 <TaskDetailsWindow
                     taskId={props.taskId}
@@ -77,11 +80,17 @@ function TaskItem(props) {
                     taskDescription={props.taskDescription}
                     onCloseBtnClick={closeDetails}
                     onDeleteBtnClick={deleteTask}
-                    onEditComplete={props.onEditComplete}
+                    userPanelInit={props.userPanelInit}
+                    reloadTasks={props.reloadTasks}
+                    reloadUserTasks={props.reloadUserTasks}
+                    userLoggedIn={props.userLoggedIn}
                 />
             }
             { detailsAreOpen && 
                 <DetailsBackground onCloseBtnClick={closeDetails} /> 
+            }
+            { userNotLoggedIn &&
+                <h1 className={classes.item__message}>You must be logged in!</h1>
             }
         </div>
     );

@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 function ProjectItem(props) {
     const [ detailsAreOpen, setDetailsState ] = useState(false);
-    const [ userNotLoggedError, setUserNotLoggedErrorState ] = useState(false);
+    const [ userNotLoggedIn, setUserNotLoggedInState ] = useState(false);
 
     function showDetails() {
         setDetailsState(true);
@@ -47,8 +47,8 @@ function ProjectItem(props) {
                 });
             });
         } else {
-            setUserNotLoggedErrorState(true);
-            setTimeout(() => { setUserNotLoggedErrorState(false); }, 3000);
+            setUserNotLoggedInState(true);
+            setTimeout(() => { setUserNotLoggedInState(false); }, 3000);
         }
     }
 
@@ -66,19 +66,24 @@ function ProjectItem(props) {
                     <button className={classes.item__btn} onClick={deleteProject}>Delete</button>
                 </div>
             </div>
-            { userNotLoggedError && <h1 className={classes.item__message}>You must be logged in!</h1> }
             { detailsAreOpen && 
                 <ProjectDetailsWindow
                     projectId={props.projectId}
                     projectName={props.projectName}
                     projectDescription={props.projectDescription}
                     projectMembers={props.projectMembers}
-                    onEditComplete={props.onEditComplete}
                     onCloseBtnClick={closeDetails}
+                    userPanelInit={props.userPanelInit}
+                    reloadProjects={props.reloadProjects}
+                    reloadUserProjects={props.reloadUserProjects}
+                    userLoggedIn={props.userLoggedIn}
                 />
             }
             { detailsAreOpen && 
                 <DetailsBackground onCloseBtnClick={closeDetails} /> 
+            }
+            { userNotLoggedIn &&
+                <h1 className={classes.item__message}>You must be logged in!</h1>
             }
         </div>
     );

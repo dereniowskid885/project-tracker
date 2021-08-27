@@ -3,15 +3,23 @@ import tasks from '../../styles/Items.module.scss';
 import TaskItem from '../TaskItem';
 import ProjectEditWindow from './ProjectEditWindow';
 import { useState, useEffect } from 'react';
+import BeatLoader from 'react-spinners/BeatLoader';
 
 function ProjectDetailsWindow(props) {
     const [ tasksAreOpen, setTasksState ] = useState(false);
+    const [ isLoading, setIsLoading ] = useState(true);
     const [ fetchedData, setFetchedData ] = useState([]);
     const [ noTasks, setNoTasksState ] = useState(false);
+    const [ userNotLoggedIn, setUserNotLoggedInState ] = useState(false);
     const [ projectEditIsOpen, setProjectEditState ] = useState(false);
 
     function showProjectEdit() {
-        setProjectEditState(true);
+        if (props.userLoggedIn) {
+            setProjectEditState(true);
+        } else {
+            setUserNotLoggedInState(true);
+            setTimeout(() => { setUserNotLoggedInState(false); }, 3000);
+        }
     }
 
     function hideProjectEdit() {
@@ -26,9 +34,11 @@ function ProjectDetailsWindow(props) {
         setTasksState(false);
     }
 
-    useEffect(() => {
+    function fetchTasks() {
+        setIsLoading(true);
+
         fetch(
-          'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
+            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
         ).then(response => {
             return response.json();
         }).then(data => {
@@ -46,11 +56,16 @@ function ProjectDetailsWindow(props) {
             }
 
             if (tempData.length === 0) {
+                setIsLoading(false);
                 setNoTasksState(true);
             } else {
+                setIsLoading(false);
                 setFetchedData(tempData);
             }
         });
+    }
+
+    useEffect(() => { fetchTasks();
         // eslint-disable-next-line
     }, []);
 
@@ -70,6 +85,11 @@ function ProjectDetailsWindow(props) {
                         <button className={classes.window__btn} onClick={showProjectEdit}>Edit</button>
                         <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Close</button>
                     </div>
+                    { isLoading &&
+                        <div className={classes.alert}>
+                            <BeatLoader color={'#6b6b83a4'} />
+                        </div>
+                    }
                     { !noTasks ?
                         <div className={tasks.content + ' ' + tasks.detailsContent}>
                             { fetchedData.map((item) => (
@@ -81,7 +101,10 @@ function ProjectDetailsWindow(props) {
                                     taskName={item.taskName}
                                     assignedUser={item.assignedUser}
                                     taskDescription={item.taskDescription}
-                                    setFetchedData={setFetchedData}
+                                    setIsLoading={setIsLoading}
+                                    reloadTasks={fetchTasks}
+                                    userLoggedIn={props.userLoggedIn}
+                                    detailsWindowInit={true}
                                 />
                             ))}
                         </div>
@@ -106,8 +129,14 @@ function ProjectDetailsWindow(props) {
                     projectMembers={props.projectMembers}
                     onCloseBtnClick={hideProjectEdit}
                     closeDetails={props.onCloseBtnClick}
-                    onEditComplete={props.onEditComplete}
+                    reloadUserProjects={props.reloadUserProjects}
+                    userPanelInit={props.userPanelInit}
+                    reloadProjects={props.reloadProjects}
+                    userLoggedIn={props.userLoggedIn}
                 />
+            }
+            { userNotLoggedIn &&
+                <h1 className={classes.window__message}>You must be logged in!</h1>
             }
         </div>
     );

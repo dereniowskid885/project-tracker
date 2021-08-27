@@ -34,7 +34,12 @@ function ProjectEditWindow(props) {
         ).then(() => {
             props.onCloseBtnClick();
             props.closeDetails();
-            props.onEditComplete();
+
+            if (props.userPanelInit === true) {
+                props.reloadUserProjects();
+            } else {
+                props.reloadProjects();
+            }
         });
     }
 

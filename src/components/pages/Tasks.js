@@ -8,23 +8,23 @@ function Tasks(props) {
     const [ fetchedData, setFetchedData ] = useState([]);
     const [ noTasks, setNoTasksState ] = useState(false);
 
-    useEffect(() => {
+    function fetchTasks() {
         setIsLoading(true);
   
         fetch(
-          'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
+            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
         ).then(response => {
             return response.json();
         }).then(data => {
             const tempData = [];
 
             for (const key in data) {
-            const item = {
-                id: key,
-                ...data[key]
-            };
+                const item = {
+                    id: key,
+                    ...data[key]
+                };
 
-            tempData.push(item);
+                tempData.push(item);
             }
 
             setIsLoading(false);
@@ -35,7 +35,9 @@ function Tasks(props) {
                 setFetchedData(tempData);
             }
         });
-    }, []);
+    }
+
+    useEffect(() => { fetchTasks(); }, []);
 
     if (isLoading) {
         return (
@@ -66,7 +68,9 @@ function Tasks(props) {
                     taskDescription={item.taskDescription}
                     setIsLoading={setIsLoading}
                     setFetchedData={setFetchedData}
-                    userLoggedIn={props.userDetails.loggedIn}
+                    reloadTasks={fetchTasks}
+                    userLoggedIn={props.userLoggedIn}
+                    detailsWindowInit={false}
                 />
             ))}
         </main>

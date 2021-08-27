@@ -1,4 +1,6 @@
 @import './_variables.scss';
+@import './Item.module.scss';
+@import './Items.module.scss';
 
 .window {
     position: fixed;
@@ -63,6 +65,10 @@
         color: rgb(14, 192, 14);
     }
 
+    &__message {
+        @extend .item__message;
+    }
+
     ol {
         padding-left: 1.5rem;
         list-style-type: initial;
@@ -75,4 +81,9 @@
 
 .detailsContent {
     padding: 0;
+}
+
+.alert {
+    top: 75%;
+    @extend .alert;
 }

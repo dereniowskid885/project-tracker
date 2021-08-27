@@ -8,10 +8,10 @@ function UserProjects(props) {
     const [ fetchedData, setFetchedData ] = useState([]);
     const userProjects = [];
 
-    function onEditComplete() {
+    function reloadUserProjects() {
         setIsLoading(true);
         setIsLoading(false);
-        props.reloadProjects();
+        props.reloadUserProjects();
     }
 
     useEffect(() => {
@@ -75,7 +75,8 @@ function UserProjects(props) {
                     projectMembers={item.projectMembers}
                     setIsLoading={setIsLoading}
                     setFetchedData={setFetchedData}
-                    onEditComplete={onEditComplete}
+                    reloadUserProjects={reloadUserProjects}
+                    userPanelInit={true}
                     userLoggedIn={props.loggedIn}
                 />
             ))}
