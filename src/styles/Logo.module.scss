@@ -26,3 +26,15 @@
         padding: 0.5rem;
     }
 }
+
+@media only screen and (max-width: 650px) {
+    .logo {
+        height: 16vh;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .logo {
+        height: 14vh;
+    }
+}

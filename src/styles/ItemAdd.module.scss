@@ -73,6 +73,15 @@
     &__buttons {
         text-align: center;
     }
+
+    &__icon {
+        position: absolute;
+        top: 10px;
+        font-size: calc(1rem + 1vw);
+        right: 10px;
+        color: #000000;
+        cursor: pointer;
+    }
 }
 
 @media only screen and (max-width: 1300px) {

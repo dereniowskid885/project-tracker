@@ -2,8 +2,14 @@ import classes from '../../styles/DetailsWindow.module.scss';
 import tasks from '../../styles/Items.module.scss';
 import TaskItem from '../TaskItem';
 import ProjectEditWindow from './ProjectEditWindow';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 import { useState, useEffect } from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
+
+library.add(fas, fab);
 
 function ProjectDetailsWindow(props) {
     const [ tasksAreOpen, setTasksState ] = useState(false);
@@ -72,6 +78,7 @@ function ProjectDetailsWindow(props) {
 
     return (
         <div className={classes.window + ' ' + [tasksAreOpen && classes.window__tasksDetails]}>
+            <FontAwesomeIcon className={classes.window__icon} icon="times-circle" onClick={props.onCloseBtnClick}/>
             <h1>{props.projectName}</h1>
             <ol>
                 { props.projectMembers && props.projectMembers.map((member) => (
@@ -110,9 +117,7 @@ function ProjectDetailsWindow(props) {
                             ))}
                         </div>
                     :
-                        <div className={classes.tasks}>
-                            <h2>There are no tasks in this project yet.</h2>
-                        </div>
+                        <h2 className={classes.tasks}>There are no tasks in this project yet.</h2>
                     }
                 </div>
             :

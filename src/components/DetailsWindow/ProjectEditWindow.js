@@ -1,5 +1,11 @@
 import classes from '../../styles/ItemAdd.module.scss';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 import { useState, useRef, useEffect } from 'react';
+
+library.add(fas, fab);
 
 function ProjectEditWindow(props) {
     const [ userList, setUserList ] = useState([]);
@@ -87,6 +93,7 @@ function ProjectEditWindow(props) {
 
     return (
         <div className={classes.itemAdd}>
+            <FontAwesomeIcon className={classes.itemAdd__icon} icon="times-circle" onClick={props.onCloseBtnClick}/>
             <h1>Edit {props.projectName}</h1>
             <form onSubmit={submitHandler}>
                 <div className={classes.itemAdd__field}>

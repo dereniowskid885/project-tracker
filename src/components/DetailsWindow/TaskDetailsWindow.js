@@ -1,6 +1,12 @@
 import classes from '../../styles/DetailsWindow.module.scss';
 import TaskEditWindow from './TaskEditWindow';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 import { useState } from 'react';
+
+library.add(fas, fab);
 
 function TaskDetailsWindow(props) {
     const [ taskEditIsOpen, setTaskEditState ] = useState(false);
@@ -21,6 +27,7 @@ function TaskDetailsWindow(props) {
 
     return (
         <div className={classes.window}>
+            <FontAwesomeIcon className={classes.window__icon} icon="times-circle" onClick={props.onCloseBtnClick}/>
             <h2>{props.projectName}</h2>
             <h2 className={(props.taskPriority === "High" && classes.window__priorityHigh) + ' ' +
                                (props.taskPriority === "Medium" && classes.window__priorityMed) + ' ' +

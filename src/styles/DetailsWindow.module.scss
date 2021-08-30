@@ -15,21 +15,17 @@
     padding: 1em;
     border: 2px solid black;
     border-radius: 0.5em;
-    padding-bottom: 4.5rem;
 
     &__btn {
         @extend %btn-primary;
         white-space: nowrap;
         position: static;
         transform: translateX(0);
-        font-size: calc(0.9rem + 0.1vw);
+        font-size: calc(1rem + 0.1vw);
     }
 
     &__buttons {
-        position: absolute;
-        bottom: 1%;
-        left: 3%;
-        width: 93%;
+        width: 100%;
         display: flex;
         justify-content: space-around;
 
@@ -50,7 +46,7 @@
 
     &__projectDescription,
     &__taskName {
-        margin-top: 1rem;
+        margin: 1rem 0;
     }
 
     &__priorityHigh {
@@ -69,6 +65,15 @@
         @extend .item__message;
     }
 
+    &__icon {
+        position: absolute;
+        top: 10px;
+        font-size: calc(1rem + 1vw);
+        right: 10px;
+        color: #000000;
+        cursor: pointer;
+    }
+
     ol {
         padding-left: 1.5rem;
         list-style-type: initial;
@@ -76,7 +81,7 @@
 }
 
 .tasks {
-    margin: 1.5rem 0;
+    margin: 0.8rem 0;
 }
 
 .detailsContent {
