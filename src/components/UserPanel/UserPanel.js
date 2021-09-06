@@ -4,7 +4,7 @@ import TaskAdd from './TaskAdd';
 import UserTasks from './UserTasks';
 import UserProjects from './UserProjects';
 import { useState } from 'react';
-import DetailsBackground from '../DetailsWindow/DetailsBackground';
+import DetailsBackground from '../detailsWindow/DetailsBackground';
 
 function UserPanel(props) {
     const [ projectAddIsOpen, setProjectAddState ] = useState(false);
