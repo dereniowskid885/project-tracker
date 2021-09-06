@@ -1,4 +1,4 @@
-import classes from '../styles/LoginForm.module.scss';
+import classes from '../../styles/LoginForm.module.scss';
 import { useState, useRef } from 'react';
 
 function RegisterForm(props) {
@@ -57,7 +57,7 @@ function RegisterForm(props) {
                 </label>
                 <input type="password" name="confirm_password" ref={passwordConfirmRef} required />
                 <br />
-                <button className={classes.login__btn} onClick={props.onBackBtnClick}>Back</button>
+                <button className={classes.login__btn} type="button" onClick={props.onBackBtnClick}>Back</button>
                 <button className={classes.login__btn} type="submit">Submit</button>
             </form>
             { passwordConfirmError &&

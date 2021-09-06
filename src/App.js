@@ -1,10 +1,10 @@
 import MainNavigation from './components/layout/MainNavigation';
 import Logo from './components/layout/Logo';
-import UserMenu from './components/layout/UserMenu';
-import Home from './components/pages/Home';
-import Projects from './components/pages/Projects';
-import Tasks from './components/pages/Tasks';
-import About from './components/pages/About';
+import UserInfo from './components/layout/UserInfo';
+import Home from './pages/Home';
+import Projects from './pages/Projects';
+import Tasks from './pages/Tasks';
+import About from './pages/About';
 import classes from './styles/App.module.scss'
 import { Route, Switch } from 'react-router-dom';
 import { useState } from 'react';
@@ -23,7 +23,7 @@ function App() {
   return (
     <main className={classes.container}>
       <Logo />
-      <UserMenu userDetails={userDetails} logoutUser={logoutUser} />
+      <UserInfo userDetails={userDetails} logoutUser={logoutUser} />
       <MainNavigation />
       <Switch>
         <Route path="/" exact>

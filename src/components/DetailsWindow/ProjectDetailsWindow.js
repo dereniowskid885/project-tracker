@@ -1,6 +1,6 @@
 import classes from '../../styles/DetailsWindow.module.scss';
 import tasks from '../../styles/Items.module.scss';
-import TaskItem from '../TaskItem';
+import TaskItem from '../items/TaskItem';
 import ProjectEditWindow from './ProjectEditWindow';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";

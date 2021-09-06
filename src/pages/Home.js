@@ -1,7 +1,7 @@
-import LoginForm from '../LoginForm';
-import RegisterForm from '../RegisterForm';
-import UserPanel from '../UserPanel/UserPanel';
-import classes from '../../styles/Home.module.scss';
+import LoginForm from '../components/forms/LoginForm';
+import RegisterForm from '../components/forms/RegisterForm';
+import UserPanel from '../components/UserPanel/UserPanel';
+import classes from '../styles/Home.module.scss';
 import { useState, useEffect } from 'react';
 
 function Home(props) {

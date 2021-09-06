@@ -1,6 +1,6 @@
-import classes from '../styles/Item.module.scss';
-import TaskDetailsWindow from './DetailsWindow/TaskDetailsWindow';
-import DetailsBackground from './DetailsWindow/DetailsBackground';
+import classes from '../../styles/Item.module.scss';
+import TaskDetailsWindow from '../DetailsWindow/TaskDetailsWindow';
+import DetailsBackground from '../DetailsWindow/DetailsBackground';
 import { useState } from 'react';
 
 function TaskItem(props) {

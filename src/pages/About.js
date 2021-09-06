@@ -1,4 +1,4 @@
-import classes from '../../styles/About.module.scss'
+import classes from '../styles/About.module.scss'
 
 function About() {
     return (

@@ -3,11 +3,11 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { Link } from 'react-router-dom';
-import classes from '../../styles/UserMenu.module.scss';
+import classes from '../../styles/UserInfo.module.scss';
 
 library.add(fas, fab);
 
-function UserMenu(props) {
+function UserInfo(props) {
     return (
         <div className={classes.user}>
             <FontAwesomeIcon className={classes.user__icon} icon="user" />
@@ -28,4 +28,4 @@ function UserMenu(props) {
     );
 }
 
-export default UserMenu;
+export default UserInfo;

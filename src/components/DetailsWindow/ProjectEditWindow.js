@@ -134,8 +134,8 @@ function ProjectEditWindow(props) {
                 </div>
                 <div className={classes.itemAdd__buttons}>
                     <button className={classes.itemAdd__btn} type="submit">Confirm</button>
-                    <button className={classes.itemAdd__btn} onClick={clearForm}>Clear</button>
-                    <button className={classes.itemAdd__btn} onClick={props.onCloseBtnClick}>Back</button>
+                    <button className={classes.itemAdd__btn} type="button" onClick={clearForm}>Clear</button>
+                    <button className={classes.itemAdd__btn} type="button" onClick={props.onCloseBtnClick}>Back</button>
                 </div>
             </form>
         </div>

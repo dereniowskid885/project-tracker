@@ -1,5 +1,5 @@
 import classes from '../../styles/Items.module.scss';
-import TaskItem from '../TaskItem';
+import TaskItem from '../items/TaskItem';
 import { useState, useEffect } from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
 

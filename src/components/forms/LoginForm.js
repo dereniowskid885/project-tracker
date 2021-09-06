@@ -1,4 +1,4 @@
-import classes from '../styles/LoginForm.module.scss';
+import classes from '../../styles/LoginForm.module.scss';
 import { useState } from 'react';
 
 function LoginForm(props) {
@@ -31,7 +31,7 @@ function LoginForm(props) {
                 />
                 <br />
                 <button className={classes.login__btn} type="submit">Login</button>
-                <button className={classes.login__btn} onClick={props.onRegisterBtnClick}>Register</button>
+                <button className={classes.login__btn} type="button" onClick={props.onRegisterBtnClick}>Register</button>
             </form>
         </div>
     );

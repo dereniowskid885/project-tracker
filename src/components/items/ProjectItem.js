@@ -1,6 +1,6 @@
-import classes from '../styles/Item.module.scss';
-import ProjectDetailsWindow from './DetailsWindow/ProjectDetailsWindow';
-import DetailsBackground from './DetailsWindow/DetailsBackground';
+import classes from '../../styles/Item.module.scss';
+import ProjectDetailsWindow from '../DetailsWindow/ProjectDetailsWindow';
+import DetailsBackground from '../DetailsWindow/DetailsBackground';
 import { useState } from 'react';
 
 function ProjectItem(props) {

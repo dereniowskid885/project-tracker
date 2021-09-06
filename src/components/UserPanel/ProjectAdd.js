@@ -98,7 +98,7 @@ function ProjectAdd(props) {
                 </div>
                 <button className={classes.itemAdd__btn} type="submit">Add</button>
                 <button className={classes.itemAdd__btn} type="reset">Clear</button>
-                <button className={classes.itemAdd__btn} onClick={props.onCloseBtnClick}>Back</button>
+                <button className={classes.itemAdd__btn} type="button" onClick={props.onCloseBtnClick}>Back</button>
             </form>
         </div>
     );
