@@ -1,5 +1,6 @@
 import classes from '../../styles/LoginForm.module.scss';
 import { useState, useRef } from 'react';
+import Fade from 'react-reveal/Fade';
 
 function RegisterForm(props) {
     const [ passwordConfirmError, setPasswordConfirmErrorState ] = useState(false);
@@ -61,10 +62,14 @@ function RegisterForm(props) {
                 <button className={classes.login__btn} type="submit">Submit</button>
             </form>
             { passwordConfirmError &&
-                <h2>Passwords do not match.</h2>
+                <Fade>
+                    <h2 className={classes.login__message}>Passwords do not match.</h2>
+                </Fade>
             }
             { registerComplete &&
-                <h1 className={classes.login__message}>Account created !</h1>
+                <Fade>
+                    <h2 className={classes.login__message}>Account created !</h2>
+                </Fade>
             }
         </div>
     );

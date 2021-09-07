@@ -70,7 +70,9 @@ function Home(props) {
                             <LoginForm onRegisterBtnClick={showRegisterForm} loginUser={loginUser} />
                         }
                         { loginError &&
-                            <h2>Username, or password is incorrect.</h2>
+                            <Fade>
+                                <h2 className={classes.home__message}>Username, or password is incorrect.</h2>
+                            </Fade>
                         }
                     </div>
                 }

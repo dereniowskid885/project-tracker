@@ -2,6 +2,7 @@ import classes from '../../styles/Item.module.scss';
 import TaskDetailsWindow from '../detailsWindow/TaskDetailsWindow';
 import DetailsBackground from '../detailsWindow/DetailsBackground';
 import { useState } from 'react';
+import Fade from 'react-reveal/Fade';
 
 function TaskItem(props) {
     const [ detailsAreOpen, setDetailsState ] = useState(false);
@@ -89,7 +90,9 @@ function TaskItem(props) {
                 <DetailsBackground onCloseBtnClick={closeDetails} /> 
             }
             { userNotLoggedIn &&
-                <h1 className={classes.item__message}>You must be logged in!</h1>
+                <Fade>
+                    <h1 className={classes.item__message}>You must be logged in!</h1>
+                </Fade>
             }
         </div>
     );

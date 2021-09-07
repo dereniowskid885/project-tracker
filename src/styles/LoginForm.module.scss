@@ -30,12 +30,8 @@
     }
 
     &__message {
-        background-color: #6b6b83a4;
-        font-style: italic;
-        letter-spacing: 1px;
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        padding: 0.3rem 1rem;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
     }
 }

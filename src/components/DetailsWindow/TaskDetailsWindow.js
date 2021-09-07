@@ -58,7 +58,9 @@ function TaskDetailsWindow(props) {
                     /> 
                 }
                 { userNotLoggedIn &&
-                    <h1 className={classes.window__message}>You must be logged in!</h1>
+                    <Fade>
+                        <h1 className={classes.window__message}>You must be logged in!</h1>
+                    </Fade>
                 }
             </div>
         </Fade>
