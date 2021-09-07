@@ -2,6 +2,7 @@ import classes from '../styles/Items.module.scss';
 import TaskItem from '../components/items/TaskItem';
 import { useState, useEffect } from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
+import Fade from 'react-reveal/Fade';
 
 function Tasks(props) {
     const [ isLoading, setIsLoading ] = useState(true);
@@ -49,31 +50,35 @@ function Tasks(props) {
 
     if (noTasks) {
         return (
-            <div className={classes.alert}>
-                <h1>There are no tasks yet.</h1>
-            </div>
+            <Fade>
+                <div className={classes.alert}>
+                    <h1>There are no tasks yet.</h1>
+                </div>
+            </Fade>
         );
     }
 
     return (
-        <div className={classes.content}>
-            { fetchedData.map((item) => (
-                <TaskItem
-                    key={item.id}
-                    taskId={item.id}
-                    projectName={item.projectName}
-                    taskPriority={item.taskPriority}
-                    taskName={item.taskName}
-                    assignedUser={item.assignedUser}
-                    taskDescription={item.taskDescription}
-                    setIsLoading={setIsLoading}
-                    setFetchedData={setFetchedData}
-                    reloadTasks={fetchTasks}
-                    userLoggedIn={props.userLoggedIn}
-                    detailsWindowInit={false}
-                />
-            ))}
-        </div>
+        <Fade>
+            <div className={classes.content}>
+                { fetchedData.map((item) => (
+                    <TaskItem
+                        key={item.id}
+                        taskId={item.id}
+                        projectName={item.projectName}
+                        taskPriority={item.taskPriority}
+                        taskName={item.taskName}
+                        assignedUser={item.assignedUser}
+                        taskDescription={item.taskDescription}
+                        setIsLoading={setIsLoading}
+                        setFetchedData={setFetchedData}
+                        reloadTasks={fetchTasks}
+                        userLoggedIn={props.userLoggedIn}
+                        detailsWindowInit={false}
+                    />
+                ))}
+            </div>
+        </Fade>
     );
 }
 

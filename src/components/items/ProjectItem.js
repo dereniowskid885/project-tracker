@@ -66,7 +66,7 @@ function ProjectItem(props) {
                     <button className={classes.item__btn} onClick={deleteProject}>Delete</button>
                 </div>
             </div>
-            { detailsAreOpen && 
+            { detailsAreOpen &&
                 <ProjectDetailsWindow
                     projectId={props.projectId}
                     projectName={props.projectName}
@@ -79,8 +79,8 @@ function ProjectItem(props) {
                     userLoggedIn={props.userLoggedIn}
                 />
             }
-            { detailsAreOpen && 
-                <DetailsBackground onCloseBtnClick={closeDetails} /> 
+            { detailsAreOpen &&
+                <DetailsBackground onCloseBtnClick={closeDetails} />
             }
             { userNotLoggedIn &&
                 <h1 className={classes.item__message}>You must be logged in!</h1>

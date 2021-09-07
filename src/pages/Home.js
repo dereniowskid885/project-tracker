@@ -3,6 +3,7 @@ import RegisterForm from '../components/forms/RegisterForm';
 import UserPanel from '../components/userPanel/UserPanel';
 import classes from '../styles/Home.module.scss';
 import { useState, useEffect } from 'react';
+import Fade from 'react-reveal/Fade';
 
 function Home(props) {
     const [ registerFormIsOpen, setRegisterFormState ] = useState(false);
@@ -56,23 +57,25 @@ function Home(props) {
     }
 
     return (
-        <div className={classes.home}>
-            { props.userDetails.loggedIn ?
-                <UserPanel userDetails={props.userDetails} />
-            : 
-                <div className={classes.home__form}>
-                    <h1>Login, or register your account first.</h1>
-                    { registerFormIsOpen ?
-                        <RegisterForm onBackBtnClick={showLoginForm} />
-                    : 
-                        <LoginForm onRegisterBtnClick={showRegisterForm} loginUser={loginUser} />
-                    }
-                    { loginError &&
-                        <h2>Username, or password is incorrect.</h2>
-                    }
-                </div>
-            }
-        </div>
+        <Fade>
+            <div className={classes.home}>
+                { props.userDetails.loggedIn ?
+                    <UserPanel userDetails={props.userDetails} />
+                : 
+                    <div className={classes.home__form}>
+                        <h1>Login, or register your account first.</h1>
+                        { registerFormIsOpen ?
+                            <RegisterForm onBackBtnClick={showLoginForm} />
+                        : 
+                            <LoginForm onRegisterBtnClick={showRegisterForm} loginUser={loginUser} />
+                        }
+                        { loginError &&
+                            <h2>Username, or password is incorrect.</h2>
+                        }
+                    </div>
+                }
+            </div>
+        </Fade>
     );
 }
 

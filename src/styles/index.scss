@@ -11,7 +11,8 @@
 body {
     background-image: $background-img;
     background-attachment: fixed;
-    font-size: 16px;
+    font-size: 100%;
+    overflow-y: scroll;
 
     &::-webkit-scrollbar {
         width: 0.7rem;
@@ -19,7 +20,8 @@ body {
      
     &::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgb(0, 0, 0 / 77%);
-        background-color: #7dd8ea;
+        box-shadow: inset 0 0 6px rgb(0, 0, 0 / 77%);
+        background-color: #2e9ac1;
     }
      
     &::-webkit-scrollbar-thumb {

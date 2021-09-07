@@ -2,6 +2,7 @@ import classes from '../styles/Items.module.scss';
 import ProjectItem from '../components/items/ProjectItem';
 import { useState, useEffect } from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
+import Fade from 'react-reveal/Fade';
 
 function Projects(props) {
     const [ isLoading, setIsLoading ] = useState(true);
@@ -49,29 +50,33 @@ function Projects(props) {
 
     if (noProjects) {
         return (
-            <div className={classes.alert}>
-                <h1>There are no projects yet.</h1>
-            </div>
+            <Fade>
+                <div className={classes.alert}>
+                    <h1>There are no projects yet.</h1>
+                </div>
+            </Fade>
         );
     }
 
     return (
-        <div className={classes.content}>
-            { fetchedData.map((item) => (
-                <ProjectItem
-                    key={item.id}
-                    projectId={item.id}
-                    projectName={item.projectName}
-                    projectDescription={item.projectDescription}
-                    projectMembers={item.projectMembers}
-                    setIsLoading={setIsLoading}
-                    setFetchedData={setFetchedData}
-                    reloadProjects={fetchProjects}
-                    userLoggedIn={props.userLoggedIn}
-                    userPanelInit={false}
-                />
-            ))}
-        </div>
+        <Fade>
+            <div className={classes.content}>
+                { fetchedData.map((item) => (
+                    <ProjectItem
+                        key={item.id}
+                        projectId={item.id}
+                        projectName={item.projectName}
+                        projectDescription={item.projectDescription}
+                        projectMembers={item.projectMembers}
+                        setIsLoading={setIsLoading}
+                        setFetchedData={setFetchedData}
+                        reloadProjects={fetchProjects}
+                        userLoggedIn={props.userLoggedIn}
+                        userPanelInit={false}
+                    />
+                ))}
+            </div>
+        </Fade>
     );
 }
 

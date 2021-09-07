@@ -8,7 +8,7 @@ $logo-gradient: linear-gradient(
 %btn-primary {
     padding: 0.3rem 1rem;
     margin: 0.3rem 0;
-    border-radius: 6px;
+    border-radius: 10px;
     cursor: pointer;
     background: rgb(77, 71, 71);
     color: white;
@@ -17,4 +17,14 @@ $logo-gradient: linear-gradient(
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+    border: none;
+    transition: background-color 0.5s ease-out;
+
+    &:hover {
+        background: #76334e6b;
+    }
+
+    &:active {
+        color: rgb(77, 71, 71);
+    }
 }

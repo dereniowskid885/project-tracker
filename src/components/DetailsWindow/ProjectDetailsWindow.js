@@ -8,6 +8,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { useState, useEffect } from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
+import Fade from 'react-reveal/Fade';
 
 library.add(fas, fab);
 
@@ -77,74 +78,76 @@ function ProjectDetailsWindow(props) {
     }, []);
 
     return (
-        <div className={classes.window + ' ' + [tasksAreOpen && classes.window__tasksDetails]}>
-            <FontAwesomeIcon className={classes.window__icon} icon="times-circle" onClick={props.onCloseBtnClick}/>
-            <h1>{props.projectName}</h1>
-            <ol>
-                { props.projectMembers && props.projectMembers.map((member) => (
-                    <li key={member}>{member}</li>
-                ))}
-            </ol>
-            <p className={classes.window__projectDescription}>{props.projectDescription}</p>
-            { tasksAreOpen ?
-                <div className={classes.tasks}>
-                    <div className={classes.window__buttons + ' ' + classes.window__buttonsDetails}>
-                        <button className={classes.window__btn} onClick={hideTasks}>Hide Tasks</button>
+        <Fade>
+            <div className={classes.window + ' ' + [tasksAreOpen && classes.window__tasksDetails]}>
+                <FontAwesomeIcon className={classes.window__icon} icon="times-circle" onClick={props.onCloseBtnClick}/>
+                <h1>{props.projectName}</h1>
+                <ol>
+                    { props.projectMembers && props.projectMembers.map((member) => (
+                        <li key={member}>{member}</li>
+                    ))}
+                </ol>
+                <p className={classes.window__projectDescription}>{props.projectDescription}</p>
+                { tasksAreOpen ?
+                    <div className={classes.tasks}>
+                        <div className={classes.window__buttons + ' ' + classes.window__buttonsDetails}>
+                            <button className={classes.window__btn} onClick={hideTasks}>Hide Tasks</button>
+                            <button className={classes.window__btn} onClick={showProjectEdit}>Edit</button>
+                            <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Close</button>
+                        </div>
+                        { isLoading &&
+                            <div className={classes.alert}>
+                                <BeatLoader color={'#6b6b83a4'} />
+                            </div>
+                        }
+                        { !noTasks ?
+                            <div className={tasks.content + ' ' + tasks.detailsContent}>
+                                { fetchedData.map((item) => (
+                                    <TaskItem
+                                        key={item.id}
+                                        taskId={item.id}
+                                        projectName={item.projectName}
+                                        taskPriority={item.taskPriority}
+                                        taskName={item.taskName}
+                                        assignedUser={item.assignedUser}
+                                        taskDescription={item.taskDescription}
+                                        setIsLoading={setIsLoading}
+                                        reloadTasks={fetchTasks}
+                                        userLoggedIn={props.userLoggedIn}
+                                        detailsWindowInit={true}
+                                    />
+                                ))}
+                            </div>
+                        :
+                            <h2 className={classes.tasks}>There are no tasks in this project yet.</h2>
+                        }
+                    </div>
+                :
+                    <div className={classes.window__buttons}>
+                        <button className={classes.window__btn} onClick={showTasks}>Show Tasks</button>
                         <button className={classes.window__btn} onClick={showProjectEdit}>Edit</button>
                         <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Close</button>
                     </div>
-                    { isLoading &&
-                        <div className={classes.alert}>
-                            <BeatLoader color={'#6b6b83a4'} />
-                        </div>
-                    }
-                    { !noTasks ?
-                        <div className={tasks.content + ' ' + tasks.detailsContent}>
-                            { fetchedData.map((item) => (
-                                <TaskItem
-                                    key={item.id}
-                                    taskId={item.id}
-                                    projectName={item.projectName}
-                                    taskPriority={item.taskPriority}
-                                    taskName={item.taskName}
-                                    assignedUser={item.assignedUser}
-                                    taskDescription={item.taskDescription}
-                                    setIsLoading={setIsLoading}
-                                    reloadTasks={fetchTasks}
-                                    userLoggedIn={props.userLoggedIn}
-                                    detailsWindowInit={true}
-                                />
-                            ))}
-                        </div>
-                    :
-                        <h2 className={classes.tasks}>There are no tasks in this project yet.</h2>
-                    }
-                </div>
-            :
-                <div className={classes.window__buttons}>
-                    <button className={classes.window__btn} onClick={showTasks}>Show Tasks</button>
-                    <button className={classes.window__btn} onClick={showProjectEdit}>Edit</button>
-                    <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Close</button>
-                </div>
-            }
-            { projectEditIsOpen &&
-                <ProjectEditWindow 
-                    projectId={props.projectId}
-                    projectName={props.projectName}
-                    projectDescription={props.projectDescription}
-                    projectMembers={props.projectMembers}
-                    onCloseBtnClick={hideProjectEdit}
-                    closeDetails={props.onCloseBtnClick}
-                    reloadUserProjects={props.reloadUserProjects}
-                    userPanelInit={props.userPanelInit}
-                    reloadProjects={props.reloadProjects}
-                    userLoggedIn={props.userLoggedIn}
-                />
-            }
-            { userNotLoggedIn &&
-                <h1 className={classes.window__message}>You must be logged in!</h1>
-            }
-        </div>
+                }
+                { projectEditIsOpen &&
+                    <ProjectEditWindow 
+                        projectId={props.projectId}
+                        projectName={props.projectName}
+                        projectDescription={props.projectDescription}
+                        projectMembers={props.projectMembers}
+                        onCloseBtnClick={hideProjectEdit}
+                        closeDetails={props.onCloseBtnClick}
+                        reloadUserProjects={props.reloadUserProjects}
+                        userPanelInit={props.userPanelInit}
+                        reloadProjects={props.reloadProjects}
+                        userLoggedIn={props.userLoggedIn}
+                    />
+                }
+                { userNotLoggedIn &&
+                    <h1 className={classes.window__message}>You must be logged in!</h1>
+                }
+            </div>
+        </Fade>
     );
 }
 

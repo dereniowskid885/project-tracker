@@ -2,6 +2,7 @@ import classes from '../../styles/Items.module.scss';
 import ProjectItem from '../items/ProjectItem';
 import { useState, useEffect } from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
+import Fade from 'react-reveal/Fade';
 
 function UserProjects(props) {
     const [ isLoading, setIsLoading ] = useState(true);
@@ -58,29 +59,33 @@ function UserProjects(props) {
 
     if (userProjects.length === 0) {
         return (
-            <div>
-                <h1>You are not assigned to any project yet.</h1>
-            </div>
+            <Fade>
+                <div>
+                    <h1>You are not assigned to any project yet.</h1>
+                </div>
+            </Fade>
         );
     }
 
     return (
-        <div className={classes.content + ' ' + classes.panel}>
-            { userProjects.map((item) => (
-                <ProjectItem
-                    key={item.id}
-                    projectId={item.id}
-                    projectName={item.projectName}
-                    projectDescription={item.projectDescription}
-                    projectMembers={item.projectMembers}
-                    setIsLoading={setIsLoading}
-                    setFetchedData={setFetchedData}
-                    reloadUserProjects={reloadUserProjects}
-                    userPanelInit={true}
-                    userLoggedIn={props.loggedIn}
-                />
-            ))}
-        </div>
+        <Fade>
+            <div className={classes.content + ' ' + classes.panel}>
+                { userProjects.map((item) => (
+                    <ProjectItem
+                        key={item.id}
+                        projectId={item.id}
+                        projectName={item.projectName}
+                        projectDescription={item.projectDescription}
+                        projectMembers={item.projectMembers}
+                        setIsLoading={setIsLoading}
+                        setFetchedData={setFetchedData}
+                        reloadUserProjects={reloadUserProjects}
+                        userPanelInit={true}
+                        userLoggedIn={props.loggedIn}
+                    />
+                ))}
+            </div>
+        </Fade>
     );
 }
 
