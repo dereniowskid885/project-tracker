@@ -4,6 +4,7 @@ import Fade from 'react-reveal/Fade';
 
 function RegisterForm(props) {
     const [ passwordConfirmError, setPasswordConfirmErrorState ] = useState(false);
+    const [ userExistError, setUserExistErrorState ] = useState(false);
     const [ registerComplete, setRegisterCompleteState ] = useState(false);
 
     const usernameRef = useRef();
@@ -17,29 +18,43 @@ function RegisterForm(props) {
 
     function submitHandler(e) {
         e.preventDefault();
+        let userExist = false;
         
-        if (passwordRef.current.value === passwordConfirmRef.current.value) {
-            setPasswordConfirmErrorState(false);
-
-            const formData = {
-                username: usernameRef.current.value,
-                password: passwordRef.current.value
-            };
-
-            fetch(
-                'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/users.json',
-                {
-                    method: 'POST',
-                    body: JSON.stringify(formData),
-                    headers: { 'Content-type': 'application/json' }
+        fetch(
+            'http://localhost:8000/api/users/'
+        ).then(response => {
+            return response.json();
+        }).then(data => {
+            data.forEach(user => {
+                if (user.username === usernameRef.current.value) {
+                    userExist = true;
                 }
-            ).then(() => {
-                showRegisterCompleteAlert();
             });
-        } else {
-            setPasswordConfirmErrorState(true);
-            setTimeout(() => { setPasswordConfirmErrorState(false); }, 3000);
-        }
+
+            if ((!userExist) && (passwordRef.current.value === passwordConfirmRef.current.value)) {
+                const formData = {
+                    username: usernameRef.current.value,
+                    password: passwordRef.current.value
+                };
+    
+                fetch(
+                    'http://localhost:8000/api/users/',
+                    {
+                        method: 'POST',
+                        body: JSON.stringify(formData),
+                        headers: { 'Content-type': 'application/json' }
+                    }
+                ).then(() => {
+                    showRegisterCompleteAlert();
+                });
+            } else if (userExist) {
+                setUserExistErrorState(true);
+                setTimeout(() => { setUserExistErrorState(false); }, 3000);
+            } else {
+                setPasswordConfirmErrorState(true);
+                setTimeout(() => { setPasswordConfirmErrorState(false); }, 3000);
+            }
+        });
     }
 
     return (
@@ -64,6 +79,11 @@ function RegisterForm(props) {
             { passwordConfirmError &&
                 <Fade>
                     <h2 className={classes.login__message}>Passwords do not match.</h2>
+                </Fade>
+            }
+            { userExistError &&
+                <Fade>
+                    <h2 className={classes.login__message}>User already exist.</h2>
                 </Fade>
             }
             { registerComplete &&

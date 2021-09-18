@@ -22,7 +22,7 @@ function TaskItem(props) {
             props.setIsLoading(true);
 
             fetch(
-                'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks/' + props.taskId + '.json',
+                'http://localhost:8000/api/tasks/' + props.taskId + '/',
                 {
                     method: 'DELETE'
                 }
@@ -31,7 +31,7 @@ function TaskItem(props) {
                     props.reloadTasks();
                 } else {
                     fetch(
-                        'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
+                        'http://localhost:8000/api/tasks/'
                         ).then(response => {
                             return response.json();
                         }).then(data => {
@@ -47,7 +47,14 @@ function TaskItem(props) {
                         }
                         
                         props.setIsLoading(false);
-                        props.setFetchedData(tempData);
+                        
+                        if ((tempData.length === 0) && (props.userPanelInit === true)) {
+                            props.reloadUserTasks();
+                        } else if (tempData.length === 0) {
+                            props.setNoTasksState(true);
+                        } else {
+                            props.setFetchedData(tempData);
+                        }
                     });
                 }
             });

@@ -69,7 +69,7 @@ function UserPanel(props) {
 
     function sendData(formData, table) {
         fetch(
-            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/' + table + '.json',
+            'http://localhost:8000/api/' + table + '/',
             {
                 method: 'POST',
                 body: JSON.stringify(formData),

@@ -19,7 +19,7 @@ function UserTasks(props) {
         setIsLoading(true);
   
         fetch(
-            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
+            'http://localhost:8000/api/tasks/'
         ).then(response => {
             return response.json();
         }).then(data => {
@@ -58,34 +58,30 @@ function UserTasks(props) {
     if (userTasks.length === 0) {
         return (
             <Fade>
-                <div>
-                    <h1>You have no tasks assigned yet.</h1>
-                </div>
+                <h1>You have no tasks assigned yet.</h1>
             </Fade>
         );
     }
 
     return (
-        <Fade>
-            <div className={classes.content + ' ' + classes.panel}>
-                { userTasks.map((item) => (
-                    <TaskItem
-                        key={item.id}
-                        taskId={item.id}
-                        projectName={item.projectName}
-                        taskPriority={item.taskPriority}
-                        taskName={item.taskName}
-                        assignedUser={item.assignedUser}
-                        taskDescription={item.taskDescription}
-                        setIsLoading={setIsLoading}
-                        setFetchedData={setFetchedData}
-                        reloadUserTasks={reloadUserTasks}
-                        userPanelInit={true}
-                        userLoggedIn={props.loggedIn}
-                    />
-                ))}
-            </div>
-        </Fade>
+        <div className={classes.content + ' ' + classes.panel}>
+            { userTasks.map((item) => (
+                <TaskItem
+                    key={item.id}
+                    taskId={item.id}
+                    projectName={item.projectName}
+                    taskPriority={item.taskPriority}
+                    taskName={item.taskName}
+                    assignedUser={item.assignedUser}
+                    taskDescription={item.taskDescription}
+                    setIsLoading={setIsLoading}
+                    setFetchedData={setFetchedData}
+                    reloadUserTasks={reloadUserTasks}
+                    userPanelInit={true}
+                    userLoggedIn={props.loggedIn}
+                />
+            ))}
+        </div>
     );
 }
 

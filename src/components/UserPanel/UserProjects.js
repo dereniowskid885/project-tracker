@@ -19,13 +19,15 @@ function UserProjects(props) {
         setIsLoading(true);
   
         fetch(
-          'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects.json'
+          'http://localhost:8000/api/projects/'
         ).then(response => {
             return response.json();
         }).then(data => {
             const tempData = [];
 
             for (const key in data) {
+                data[key].projectMembers = data[key].projectMembers.split(",");
+                
                 const item = {
                     id: key,
                     ...data[key]
@@ -42,7 +44,7 @@ function UserProjects(props) {
     if (fetchedData.length !== 0) {
         fetchedData.forEach((project) => {
             project.projectMembers.forEach((member) => {
-                if (member === props.userLoggedIn) {
+                if (member.trim() === props.userLoggedIn) {
                     userProjects.push(project);
                 }
             });
@@ -60,32 +62,28 @@ function UserProjects(props) {
     if (userProjects.length === 0) {
         return (
             <Fade>
-                <div>
-                    <h1>You are not assigned to any project yet.</h1>
-                </div>
+                <h1>You are not assigned to any project yet.</h1>
             </Fade>
         );
     }
 
     return (
-        <Fade>
-            <div className={classes.content + ' ' + classes.panel}>
-                { userProjects.map((item) => (
-                    <ProjectItem
-                        key={item.id}
-                        projectId={item.id}
-                        projectName={item.projectName}
-                        projectDescription={item.projectDescription}
-                        projectMembers={item.projectMembers}
-                        setIsLoading={setIsLoading}
-                        setFetchedData={setFetchedData}
-                        reloadUserProjects={reloadUserProjects}
-                        userPanelInit={true}
-                        userLoggedIn={props.loggedIn}
-                    />
-                ))}
-            </div>
-        </Fade>
+        <div className={classes.content + ' ' + classes.panel}>
+            { userProjects.map((item) => (
+                <ProjectItem
+                    key={item.id}
+                    projectId={item.id}
+                    projectName={item.projectName}
+                    projectDescription={item.projectDescription}
+                    projectMembers={item.projectMembers}
+                    setIsLoading={setIsLoading}
+                    setFetchedData={setFetchedData}
+                    reloadUserProjects={reloadUserProjects}
+                    userPanelInit={true}
+                    userLoggedIn={props.loggedIn}
+                />
+            ))}
+        </div>
     );
 }
 
