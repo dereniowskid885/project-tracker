@@ -27,41 +27,43 @@ function TaskDetailsWindow(props) {
     }
 
     return (
-        <div className={classes.window}>
-            <FontAwesomeIcon className={classes.window__icon} icon="times-circle" onClick={props.onCloseBtnClick}/>
-            <h2>{props.projectName}</h2>
-            <h2 className={(props.taskPriority === "High" && classes.window__priorityHigh) + ' ' +
-                            (props.taskPriority === "Medium" && classes.window__priorityMed) + ' ' +
-                            (props.taskPriority === "Low" && classes.window__priorityLow)}>{props.taskPriority}</h2>
-            <h2>{props.assignedUser}</h2>
-            <h2 className={classes.window__taskName}>{props.taskName}</h2>
-            <p>{props.taskDescription}</p>
-            <div className={classes.window__buttons}>
-                <button className={classes.window__btn} onClick={showTaskEdit}>Edit</button>
-                <button className={classes.window__btn} onClick={props.onDeleteBtnClick}>Delete</button>
-                <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Close</button>
+        <Fade>
+            <div className={classes.window}>
+                <FontAwesomeIcon className={classes.window__icon} icon="times-circle" onClick={props.onCloseBtnClick}/>
+                <h2>{props.projectName}</h2>
+                <h2 className={(props.taskPriority === "High" && classes.window__priorityHigh) + ' ' +
+                                (props.taskPriority === "Medium" && classes.window__priorityMed) + ' ' +
+                                (props.taskPriority === "Low" && classes.window__priorityLow)}>{props.taskPriority}</h2>
+                <h2>{props.assignedUser}</h2>
+                <h2 className={classes.window__taskName}>{props.taskName}</h2>
+                <p>{props.taskDescription}</p>
+                <div className={classes.window__buttons}>
+                    <button className={classes.window__btn} onClick={showTaskEdit}>Edit</button>
+                    <button className={classes.window__btn} onClick={props.onDeleteBtnClick}>Delete</button>
+                    <button className={classes.window__btn} onClick={props.onCloseBtnClick}>Close</button>
+                </div>
+                { taskEditIsOpen &&
+                    <TaskEditWindow
+                        taskId={props.taskId}
+                        taskName={props.taskName}
+                        projectName={props.projectName}
+                        taskPriority={props.taskPriority}
+                        assignedUser={props.assignedUser}
+                        taskDescription={props.taskDescription}
+                        onCloseBtnClick={hideTaskEdit}
+                        closeDetails={props.onCloseBtnClick}
+                        reloadUserTasks={props.reloadUserTasks}
+                        reloadTasks={props.reloadTasks}
+                        userPanelInit={props.userPanelInit}
+                    /> 
+                }
+                { userNotLoggedIn &&
+                    <Fade>
+                        <h1 className={classes.window__message}>You must be logged in!</h1>
+                    </Fade>
+                }
             </div>
-            { taskEditIsOpen &&
-                <TaskEditWindow
-                    taskId={props.taskId}
-                    taskName={props.taskName}
-                    projectName={props.projectName}
-                    taskPriority={props.taskPriority}
-                    assignedUser={props.assignedUser}
-                    taskDescription={props.taskDescription}
-                    onCloseBtnClick={hideTaskEdit}
-                    closeDetails={props.onCloseBtnClick}
-                    reloadUserTasks={props.reloadUserTasks}
-                    reloadTasks={props.reloadTasks}
-                    userPanelInit={props.userPanelInit}
-                /> 
-            }
-            { userNotLoggedIn &&
-                <Fade>
-                    <h1 className={classes.window__message}>You must be logged in!</h1>
-                </Fade>
-            }
-        </div>
+        </Fade>
     );
 }
 
