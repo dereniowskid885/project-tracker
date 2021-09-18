@@ -28,7 +28,7 @@ function TaskEditWindow(props) {
         };
 
         fetch(
-            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/tasks/' + props.taskId + '.json',
+            'http://localhost:8000/api/tasks/' + props.taskId + '/',
             {
                 method: 'PUT',
                 body: JSON.stringify(formData),
@@ -53,7 +53,7 @@ function TaskEditWindow(props) {
 
     useEffect(() => {
         fetch(
-          'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/users.json'
+          'http://localhost:8000/api/users/'
         ).then(response => {
             return response.json();
         }).then(data => {

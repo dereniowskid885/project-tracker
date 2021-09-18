@@ -22,19 +22,21 @@ function ProjectItem(props) {
             props.setIsLoading(true);
             
             fetch(
-                'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects/' + props.projectId + '.json',
+                'http://localhost:8000/api/projects/' + props.projectId + '/',
                 {
                     method: 'DELETE'
                 }
             ).then(() => {
                 fetch(
-                    'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects.json'
+                    'http://localhost:8000/api/projects/'
                 ).then(response => {
                     return response.json();
                 }).then(data => {
                     const tempData = [];
             
                     for (const key in data) {
+                        data[key].projectMembers = data[key].projectMembers.split(",");
+
                         const item = {
                             id: key,
                             ...data[key]
@@ -44,7 +46,14 @@ function ProjectItem(props) {
                     }
             
                     props.setIsLoading(false);
-                    props.setFetchedData(tempData);
+
+                    if ((tempData.length === 0) && (props.userPanelInit === true)) {
+                        props.reloadUserProjects();
+                    } else if (tempData.length === 0) {
+                        props.setNoProjectsState(true);
+                    } else {
+                        props.setFetchedData(tempData);
+                    }
                 });
             });
         } else {

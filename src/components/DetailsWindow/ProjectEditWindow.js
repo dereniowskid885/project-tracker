@@ -16,22 +16,22 @@ function ProjectEditWindow(props) {
     function submitHandler(e) {
         e.preventDefault();
 
-        const projectMembers = [];
+        let projectMembers = "";
 
         userList.forEach(user => {
             if (user.checked === true) {
-                projectMembers.push(user.username);
+                projectMembers = projectMembers + user.username + ", ";
             }
         });
 
         const formData = {
             projectName: projectNameRef.current.value,
             projectDescription: projectDescriptionRef.current.value,
-            projectMembers: projectMembers
+            projectMembers: projectMembers.slice(0, -2)
         };
 
         fetch(
-            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects/' + props.projectId + '.json',
+            'http://localhost:8000/api/projects/' + props.projectId + '/',
             {
                 method: 'PUT',
                 body: JSON.stringify(formData),
@@ -56,7 +56,7 @@ function ProjectEditWindow(props) {
 
     useEffect(() => {
         fetch(
-          'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/users.json'
+          'http://localhost:8000/api/users/'
         ).then(response => {
             return response.json();
         }).then(data => {
@@ -73,13 +73,15 @@ function ProjectEditWindow(props) {
             }
 
             fetch(
-                'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/projects/' + props.projectId + '/projectMembers.json'
+                'http://localhost:8000/api/projects/' + props.projectId
             ).then(response => {
                 return response.json();
             }).then(data => {
-                data.forEach((item) => {
+                const projectMembers = data.projectMembers.split(",");
+
+                projectMembers.forEach((member) => {
                     tempData.forEach((user) => {
-                        if (item === user.username) {
+                        if (member.trim() === user.username) {
                             user.checked = true;
                         }
                     });

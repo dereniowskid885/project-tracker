@@ -12,7 +12,7 @@ function Home(props) {
 
     useEffect(() => {
         fetch(
-            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/users.json'
+            'http://localhost:8000/api/users/'
         ).then(response => {
             return response.json();
         }).then(data => {

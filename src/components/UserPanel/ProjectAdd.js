@@ -16,18 +16,18 @@ function ProjectAdd(props) {
     function submitHandler(e) {
         e.preventDefault();
 
-        const projectMembers = [];
+        let projectMembers = "";
 
         userList.forEach(user => {
             if (user.checked === true) {
-                projectMembers.push(user.username);
+                projectMembers = projectMembers + user.username + ", ";
             }
         });
 
         const formData = {
             projectName: projectNameRef.current.value,
             projectDescription: projectDescriptionRef.current.value,
-            projectMembers: projectMembers
+            projectMembers: projectMembers.slice(0, -2)
         };
 
         props.sendData(formData, 'projects');
@@ -35,7 +35,7 @@ function ProjectAdd(props) {
 
     useEffect(() => {
         fetch(
-          'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/users.json'
+          'http://localhost:8000/api/users/'
         ).then(response => {
             return response.json();
         }).then(data => {

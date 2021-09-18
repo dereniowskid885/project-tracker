@@ -33,7 +33,7 @@ function TaskAdd(props) {
 
     function fetchData(table, setList) {
         fetch(
-            'https://project-tracker-db-4f6dd-default-rtdb.europe-west1.firebasedatabase.app/' + table + '.json'
+            'http://localhost:8000/api/' + table + '/'
         ).then(response => {
             return response.json();
         }).then(data => {
