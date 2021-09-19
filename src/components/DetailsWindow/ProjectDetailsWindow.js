@@ -25,7 +25,6 @@ function ProjectDetailsWindow(props) {
             setProjectEditState(true);
         } else {
             setUserNotLoggedInState(true);
-            setTimeout(() => { setUserNotLoggedInState(false); }, 3000);
         }
     }
 

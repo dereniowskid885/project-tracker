@@ -60,7 +60,6 @@ function TaskItem(props) {
             });
         } else {
             setUserNotLoggedInState(true);
-            setTimeout(() => { setUserNotLoggedInState(false); }, 3000);
         }
     }
 

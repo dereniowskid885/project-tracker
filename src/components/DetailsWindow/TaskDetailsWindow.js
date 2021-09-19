@@ -18,7 +18,6 @@ function TaskDetailsWindow(props) {
             setTaskEditState(true);
         } else {
             setUserNotLoggedInState(true);
-            setTimeout(() => { setUserNotLoggedInState(false); }, 3000);
         }
     }
 

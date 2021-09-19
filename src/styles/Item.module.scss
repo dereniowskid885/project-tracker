@@ -52,6 +52,9 @@
         padding: 0.3rem 1rem;
         font-size: calc(1.5rem + 0.5vw);
         z-index: 2;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
     }
 
     ol {

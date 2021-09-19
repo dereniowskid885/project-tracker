@@ -5,6 +5,7 @@ import UserTasks from './UserTasks';
 import UserProjects from './UserProjects';
 import { useState } from 'react';
 import DetailsBackground from '../detailsWindow/DetailsBackground';
+import Fade from 'react-reveal/Fade';
 
 function UserPanel(props) {
     const [ projectAddIsOpen, setProjectAddState ] = useState(false);
@@ -48,7 +49,7 @@ function UserPanel(props) {
 
     function itemAddAlert() {
         setItemAddState(true);
-        setTimeout(() => { setItemAddState(false); }, 3000);
+        setTimeout(() => { setItemAddState(false); }, 2000);
     }
 
     function closeDetails() {
@@ -116,8 +117,10 @@ function UserPanel(props) {
                 /> 
             }
             { itemIsAdded &&
-                <h1 className={classes.panel__message}>Success !</h1>
-            }
+                <Fade>
+                    <h1 className={classes.panel__message}>Success !</h1>
+                </Fade>
+            }       
             { ((projectAddIsOpen && detailsAreOpen) || (taskAddIsOpen && detailsAreOpen)) && 
                 <DetailsBackground 
                     onCloseBtnClick={closeDetails} 
