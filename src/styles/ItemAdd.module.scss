@@ -1,4 +1,5 @@
 @import './variables';
+@import './Item.module.scss';
 
 .itemAdd {
     position: fixed;
@@ -81,6 +82,10 @@
         right: 10px;
         color: #000000;
         cursor: pointer;
+    }
+
+    &__message {
+        @extend .item__message;
     }
 }
 

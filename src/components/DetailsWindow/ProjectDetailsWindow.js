@@ -19,6 +19,7 @@ function ProjectDetailsWindow(props) {
     const [ noTasks, setNoTasksState ] = useState(false);
     const [ userNotLoggedIn, setUserNotLoggedInState ] = useState(false);
     const [ projectEditIsOpen, setProjectEditState ] = useState(false);
+    const [ noProjectMembers, setNoProjectMembersState ] = useState(false);
 
     function showProjectEdit() {
         if (props.userLoggedIn) {
@@ -30,6 +31,11 @@ function ProjectDetailsWindow(props) {
 
     function hideProjectEdit() {
         setProjectEditState(false);
+    }
+
+    function noProjectMembersAlert() {
+        setNoProjectMembersState(true);
+        setTimeout(() => { setNoProjectMembersState(false); }, 2000);
     }
 
     function showTasks() {
@@ -140,11 +146,17 @@ function ProjectDetailsWindow(props) {
                         userPanelInit={props.userPanelInit}
                         reloadProjects={props.reloadProjects}
                         userLoggedIn={props.userLoggedIn}
+                        noProjectMembersAlert={noProjectMembersAlert}
                     />
                 }
                 { userNotLoggedIn &&
                     <Fade>
                         <h1 className={classes.window__message}>You must be logged in!</h1>
+                    </Fade>
+                }
+                { noProjectMembers &&
+                    <Fade>
+                        <h1 className={classes.window__message}>Select project members !</h1>
                     </Fade>
                 }
             </div>

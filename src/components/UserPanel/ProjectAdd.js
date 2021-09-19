@@ -24,13 +24,17 @@ function ProjectAdd(props) {
             }
         });
 
-        const formData = {
-            projectName: projectNameRef.current.value,
-            projectDescription: projectDescriptionRef.current.value,
-            projectMembers: projectMembers.slice(0, -2)
-        };
+        if (projectMembers.length === 0) {
+            props.noProjectMembersAlert();
+        } else {
+            const formData = {
+                projectName: projectNameRef.current.value,
+                projectDescription: projectDescriptionRef.current.value,
+                projectMembers: projectMembers.slice(0, -2)
+            };
 
-        props.sendData(formData, 'projects');
+            props.sendData(formData, 'projects');
+        }
     }
 
     useEffect(() => {

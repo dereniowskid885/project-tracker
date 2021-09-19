@@ -14,6 +14,7 @@ function UserPanel(props) {
     const [ userTasksAreOpen, setUserTasksState ] = useState(false);
     const [ userProjectsAreOpen, setUserProjectsState ] = useState(false);
     const [ itemIsAdded, setItemAddState ] = useState(false);
+    const [ noProjectMembers, setNoProjectMembersState ] = useState(false);
 
     function showProjectAdd() {
         setTaskAddState(false);
@@ -50,6 +51,11 @@ function UserPanel(props) {
     function itemAddAlert() {
         setItemAddState(true);
         setTimeout(() => { setItemAddState(false); }, 2000);
+    }
+
+    function noProjectMembersAlert() {
+        setNoProjectMembersState(true);
+        setTimeout(() => { setNoProjectMembersState(false); }, 2000);
     }
 
     function closeDetails() {
@@ -92,8 +98,9 @@ function UserPanel(props) {
             </div>
             { projectAddIsOpen && 
                 <ProjectAdd 
-                    sendData={sendData} 
-                    onCloseBtnClick={closeDetails} 
+                    sendData={sendData}
+                    noProjectMembersAlert={noProjectMembersAlert}
+                    onCloseBtnClick={closeDetails}
                 /> 
             }
             { taskAddIsOpen && 
@@ -120,7 +127,12 @@ function UserPanel(props) {
                 <Fade>
                     <h1 className={classes.panel__message}>Success !</h1>
                 </Fade>
-            }       
+            }
+            { noProjectMembers &&
+                <Fade>
+                    <h1 className={classes.panel__message}>Select project members !</h1>
+                </Fade>
+            }
             { ((projectAddIsOpen && detailsAreOpen) || (taskAddIsOpen && detailsAreOpen)) && 
                 <DetailsBackground 
                     onCloseBtnClick={closeDetails} 

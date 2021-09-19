@@ -24,29 +24,33 @@ function ProjectEditWindow(props) {
             }
         });
 
-        const formData = {
-            projectName: projectNameRef.current.value,
-            projectDescription: projectDescriptionRef.current.value,
-            projectMembers: projectMembers.slice(0, -2)
-        };
-
-        fetch(
-            'http://localhost:8000/api/projects/' + props.projectId + '/',
-            {
-                method: 'PUT',
-                body: JSON.stringify(formData),
-                headers: { 'Content-type': 'application/json' }
-            }
-        ).then(() => {
-            props.onCloseBtnClick();
-            props.closeDetails();
-
-            if (props.userPanelInit === true) {
-                props.reloadUserProjects();
-            } else {
-                props.reloadProjects();
-            }
-        });
+        if (projectMembers.length === 0) {
+            props.noProjectMembersAlert();
+        } else {
+            const formData = {
+                projectName: projectNameRef.current.value,
+                projectDescription: projectDescriptionRef.current.value,
+                projectMembers: projectMembers.slice(0, -2)
+            };
+    
+            fetch(
+                'http://localhost:8000/api/projects/' + props.projectId + '/',
+                {
+                    method: 'PUT',
+                    body: JSON.stringify(formData),
+                    headers: { 'Content-type': 'application/json' }
+                }
+            ).then(() => {
+                props.onCloseBtnClick();
+                props.closeDetails();
+    
+                if (props.userPanelInit === true) {
+                    props.reloadUserProjects();
+                } else {
+                    props.reloadProjects();
+                }
+            });
+        }
     }
 
     function clearForm() {
