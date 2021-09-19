@@ -63,15 +63,15 @@ function RegisterForm(props) {
                 <label htmlFor="username">
                     <h2>Username</h2>
                 </label>
-                <input type="text" name="username" ref={usernameRef} required />
+                <input type="text" name="username" ref={usernameRef} minlength="3" maxlength="20" required />
                 <label htmlFor="password">
                     <h2>Password</h2>
                 </label>
-                <input type="password" name="password" ref={passwordRef} required />
+                <input type="password" name="password" ref={passwordRef} minlength="3" maxlength="20" required />
                 <label htmlFor="confirm_password">
                     <h2>Confirm password</h2>
                 </label>
-                <input type="password" name="confirm_password" ref={passwordConfirmRef} required />
+                <input type="password" name="confirm_password" ref={passwordConfirmRef} minlength="3" maxlength="20" required />
                 <br />
                 <button className={classes.login__btn} type="button" onClick={props.onBackBtnClick}>Back</button>
                 <button className={classes.login__btn} type="submit">Submit</button>

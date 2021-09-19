@@ -9,6 +9,7 @@ library.add(fas, fab);
 
 function TaskEditWindow(props) {
     const [ userList, setUserList ] = useState([]);
+    const [ projectList, setProjectList ] = useState([]);
 
     const taskNameRef = useRef();
     const taskDescriptionRef = useRef();
@@ -51,25 +52,30 @@ function TaskEditWindow(props) {
         document.getElementById('taskDescription').value = "";
     }
 
-    useEffect(() => {
+    function fetchData(table, setList) {
         fetch(
-          'http://localhost:8000/api/users/'
+            'http://localhost:8000/api/' + table + '/'
         ).then(response => {
             return response.json();
         }).then(data => {
             const tempData = [];
-
+    
             for (const key in data) {
-            const item = {
-                id: key,
-                ...data[key]
-            };
-
-            tempData.push(item);
+                const item = {
+                    id: key,
+                    ...data[key]
+                };
+    
+                tempData.push(item);
             }
 
-            setUserList(tempData);
+            setList(tempData);
         });
+    }
+
+    useEffect(() => {
+        fetchData('users', setUserList);
+        fetchData('projects', setProjectList);
     }, []);
 
     return (
@@ -92,7 +98,9 @@ function TaskEditWindow(props) {
                 <div className={classes.itemAdd__field}>
                     <label htmlFor="selectedProject">Select project</label>
                     <select id="selectedProject" required ref={selectedProjectRef}>
-                        <option value={props.projectName}>{props.projectName}</option>
+                        { projectList.map((item) => (
+                            <option key={item.id} value={item.projectName}>{item.projectName}</option>
+                        ))}
                     </select>
                 </div>
                 <div className={classes.itemAdd__field}>

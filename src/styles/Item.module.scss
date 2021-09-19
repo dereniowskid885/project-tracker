@@ -19,7 +19,7 @@
 
     &__btn {
         @extend %btn-primary;
-        font-size: calc(1rem + 0.1vw);
+        font-size: calc(0.85rem + 0.1vw);
         white-space: nowrap;
         position: static;
         transform: translateX(0);
