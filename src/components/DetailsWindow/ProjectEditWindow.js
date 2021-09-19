@@ -41,6 +41,36 @@ function ProjectEditWindow(props) {
                     headers: { 'Content-type': 'application/json' }
                 }
             ).then(() => {
+                fetch(
+                    'http://localhost:8000/api/tasks/'
+                ).then(response => {
+                    return response.json();
+                }).then(data => {
+                    const tasks = [];
+        
+                    for (const key in data) {
+                        const item = {
+                            id: key,
+                            ...data[key]
+                        };
+        
+                        tasks.push(item);
+                    }
+                    
+                    tasks.forEach(task => {
+                        if (task.projectName === props.projectName) {
+                            task.projectName = formData.projectName;
+
+                            fetch('http://localhost:8000/api/tasks/' + task.id + '/',
+                            { 
+                                method: 'PUT',
+                                body: JSON.stringify(task),
+                                headers: { 'Content-type': 'application/json' }
+                            });
+                        }
+                    });
+                });
+
                 props.onCloseBtnClick();
                 props.closeDetails();
     

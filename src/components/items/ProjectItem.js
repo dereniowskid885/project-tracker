@@ -28,6 +28,29 @@ function ProjectItem(props) {
                 }
             ).then(() => {
                 fetch(
+                    'http://localhost:8000/api/tasks/'
+                ).then(response => {
+                    return response.json();
+                }).then(data => {
+                    const tasks = [];
+        
+                    for (const key in data) {
+                        const item = {
+                            id: key,
+                            ...data[key]
+                        };
+        
+                        tasks.push(item);
+                    }
+                    
+                    tasks.forEach(task => {
+                        if (task.projectName === props.projectName) {
+                            fetch('http://localhost:8000/api/tasks/' + task.id + '/', { method: 'DELETE' });
+                        }
+                    });
+                });
+
+                fetch(
                     'http://localhost:8000/api/projects/'
                 ).then(response => {
                     return response.json();
