@@ -8,6 +8,10 @@ Wymagania do uruchomienia aplikacji lokalnie:
 
 Po wcześniejszym uruchomieniu API należy w folderze nadrzędnym wpisać komendę:
 
+### `npm install`
+
+Następnie:
+
 ### `npm start`
 
 Aplikacja uruchomi się lokalnie pod adresem http://localhost:3000/
